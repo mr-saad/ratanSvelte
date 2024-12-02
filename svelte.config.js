@@ -15,7 +15,6 @@ const config = {
 			images: [
 				{
 					domains: ["cdn.sanity.io"],
-					sizes: [640, 768, 1024, 1200],
 					formats: ["image/avif", "image/webp"]
 				}
 			]
