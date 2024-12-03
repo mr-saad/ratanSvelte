@@ -1,6 +1,6 @@
 <script lang="ts">
-	import type { PageData } from "./$types"
-	const { data }: { data: PageData } = $props()
+	import type { PageServerData } from "./$types"
+	const { data }: { data: PageServerData } = $props()
 </script>
 
 <title>Products | Ratan Bandhej SvelteKit</title>
