@@ -9,7 +9,7 @@ export async function POST(req) {
 			"image":images[0].asset->{url}
 		}}`
 		const res = await (
-			await req.fetch(
+			await fetch(
 				env.queryUrl + `?query=${encodeURIComponent(q)}&$username="${username}"&$email="${email}"`
 			)
 		).json()
