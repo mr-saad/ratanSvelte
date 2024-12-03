@@ -12,7 +12,7 @@ export const load: LayoutServerLoad = async (req) => {
 		"image":images[0].asset->{url}
 		}}`
 		const res = await (
-			await req.fetch(env.queryUrl + `?query=${encodeURIComponent(q)}&$userId="${userId}"`)
+			await fetch(env.queryUrl + `?query=${encodeURIComponent(q)}&$userId="${userId}"`)
 		).json()
 
 		if (res.result?._id) {
