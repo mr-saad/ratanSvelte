@@ -7,7 +7,7 @@ export async function load(req) {
 	if (userId) {
 		const q = `*[_type=="user" && _id==$userId][0]{_id}`
 		const res = await (
-			await fetch(env.queryUrl + `?query=${encodeURIComponent(q)}&$userId="${userId}"`)
+			await req.fetch(env.queryUrl + `?query=${encodeURIComponent(q)}&$userId="${userId}"`)
 		).json()
 		if (!res.result?._id) {
 			throw redirect(308, "/sign-in")

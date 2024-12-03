@@ -1,6 +1,18 @@
 <script lang="ts">
+	import { writable } from "svelte/store"
 	import Navbar from "../components/Navbar.svelte"
-	const { children } = $props()
+	import type { Auth } from "../types"
+	import { setContext, type Snippet } from "svelte"
+	import type { LayoutServerData } from "./$types"
+
+	const { children, data }: { data: LayoutServerData; children: Snippet } = $props()
+
+	const auth = writable<Auth>({ email: "", status: false, userId: "", username: "", cart: [] })
+	$effect.pre(() => {
+		auth.set(data.auth)
+	})
+
+	setContext("auth", auth)
 </script>
 
 <Navbar />

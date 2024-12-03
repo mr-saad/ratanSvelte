@@ -4,24 +4,28 @@
 </script>
 
 <title>Products | Ratan Bandhej SvelteKit</title>
-<div class="grid" data-sveltekit-preload-data>
-	{#each data.data as prod}
-		<a href={"/products/" + prod.slug} class="prod">
-			<img
-				decoding="async"
-				loading="lazy"
-				fetchpriority="low"
-				width="75"
-				height="75"
-				src={prod.image.url}
-				alt={prod.title}
-			/>
-			<div>
-				<strong>{prod.title}</strong>
-				<p>₹{prod.price}</p>
-			</div>
-		</a>
-	{/each}
+<div class="grid">
+	{#await data.prodsStream}
+		<p>Loading...</p>
+	{:then prods}
+		{#each prods as prod}
+			<a href={"/products/" + prod.slug} class="prod">
+				<img
+					decoding="async"
+					loading="lazy"
+					fetchpriority="low"
+					width="75"
+					height="75"
+					src={prod.image.url}
+					alt={prod.title}
+				/>
+				<div>
+					<strong>{prod.title}</strong>
+					<p>₹{prod.price}</p>
+				</div>
+			</a>
+		{/each}
+	{/await}
 </div>
 
 <style>

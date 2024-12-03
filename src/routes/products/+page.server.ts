@@ -1,8 +1,10 @@
 import { env } from "$env/dynamic/private"
+import type { Prod } from "../../types"
 import type { PageServerLoad } from "./$types"
 
-export const load: PageServerLoad = async () => {
+export const load: PageServerLoad = async (req) => {
 	const q = `*[_type=="product"]{_id,"slug":slug.current,title,price,"image":images[0].asset->{url}}`
-	const { result } = await (await fetch(env.queryUrl + `?query=${encodeURIComponent(q)}`)).json()
-	return { data: result }
+	const prodsStream = async (): Promise<Prod[]> =>
+		(await (await req.fetch(env.queryUrl + `?query=${encodeURIComponent(q)}`)).json()).result
+	return { prodsStream: prodsStream() }
 }

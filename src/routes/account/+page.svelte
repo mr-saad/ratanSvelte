@@ -1,8 +1,13 @@
 <script lang="ts">
 	import { goto } from "$app/navigation"
-	import { auth } from "$lib/store"
+	import { getContext, onDestroy } from "svelte"
+	import type { Writable } from "svelte/store"
+	import type { Auth } from "../../types"
+
+	const auth = getContext<Writable<Auth>>("auth")
+
 	let details = $state({ username: "", email: "" })
-	auth.subscribe((val) => (details = val))
+	const unsub = auth.subscribe((val) => (details = { email: val.email, username: val.username }))
 
 	async function onclick() {
 		const conf = confirm("You'll be Signed Out. Sure?")
@@ -14,6 +19,7 @@
 			}
 		}
 	}
+	onDestroy(unsub)
 </script>
 
 <h1>Account</h1>
@@ -31,5 +37,6 @@
 		border: none;
 		border-radius: 5px;
 		font-weight: bold;
+		cursor: pointer;
 	}
 </style>

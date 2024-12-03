@@ -1,6 +1,10 @@
 <script lang="ts">
 	import { goto } from "$app/navigation"
-	import { auth } from "$lib/store"
+	import { getContext } from "svelte"
+	import type { Writable } from "svelte/store"
+	import type { Auth } from "../../types"
+
+	const auth = getContext<Writable<Auth>>("auth")
 
 	let err = $state("")
 

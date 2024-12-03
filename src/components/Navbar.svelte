@@ -1,17 +1,17 @@
 <script lang="ts">
 	import { page } from "$app/stores"
-	import { auth } from "$lib/store"
-	import { onDestroy } from "svelte"
+	import { getContext, onDestroy } from "svelte"
+	import type { Auth } from "../types"
+	import type { Writable } from "svelte/store"
 	let cartLength = $state(0)
-	const unsub = auth.subscribe((val) => {
-		cartLength = val.cart.length
-	})
+	const cart = getContext<Writable<Auth>>("auth")
+	const unsub = cart.subscribe((val) => (cartLength = val.cart.length))
 	onDestroy(unsub)
 </script>
 
 <nav>
 	<h1>Svelte</h1>
-	<ul data-sveltekit-preload-data>
+	<ul>
 		<li>
 			<a class:active={$page.url.pathname === "/"} href="/">Home</a>
 		</li>

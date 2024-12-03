@@ -1,9 +1,12 @@
 <script lang="ts">
-	import { auth } from "$lib/store"
-	import { onDestroy } from "svelte"
-	import type { Prod } from "../../types"
+	import { getContext, onDestroy } from "svelte"
+	import type { Auth, Prod } from "../../types"
+	import type { Writable } from "svelte/store"
+
+	const auth = getContext<Writable<Auth>>("auth")
 
 	let cart = $state<Prod[]>([])
+
 	const unsub = auth.subscribe((val) => {
 		cart = val.cart
 	})
@@ -11,7 +14,7 @@
 </script>
 
 <title>Cart | Ratan Bandhej SvelteKit</title>
-<div class="grid" data-sveltekit-preload-data>
+<div class="grid">
 	{#if cart.length}
 		{#each cart as prod}
 			<a href={"/products/" + prod.slug} class="prod">

@@ -1,8 +1,14 @@
-<script>
-	import { auth } from "$lib/store"
-	import { onDestroy } from "svelte"
+<script lang="ts">
+	import { getContext, onDestroy } from "svelte"
+	import type { Writable } from "svelte/store"
+	import type { Auth } from "../types"
+
+	const auth = getContext<Writable<Auth>>("auth")
+
 	let status = $state(false)
-	const unsub = auth.subscribe((val) => (status = val.status))
+	const unsub = auth.subscribe((val) => {
+		status = val.status
+	})
 	onDestroy(unsub)
 </script>
 

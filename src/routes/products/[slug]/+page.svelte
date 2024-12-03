@@ -1,16 +1,19 @@
 <script lang="ts">
 	import { goto } from "$app/navigation"
-	import { auth } from "$lib/store"
-	import { onDestroy } from "svelte"
+	import { getContext, onDestroy } from "svelte"
 	import type { PageServerData } from "./$types"
+	import type { Auth } from "../../../types"
+	import type { Writable } from "svelte/store"
 	const { data }: { data: PageServerData } = $props()
 
 	const prod = data.prod
 	let status = $state(false)
-	auth.subscribe((val) => (status = val.status))
+
+	const auth = getContext<Writable<Auth>>("auth")
 
 	let isInCart = $state(false)
 	const unsub = auth.subscribe((val) => {
+		status = val.status
 		for (let item of val.cart) {
 			if (item._id === prod._id) {
 				isInCart = true
