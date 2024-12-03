@@ -9,8 +9,7 @@ export async function GET(req) {
 	).result
 	return new Response(JSON.stringify(prods), {
 		headers: {
-			"Cache-Control": "public, max-age=600",
-			"Content-Type": "application/json"
+			"Cache-Control": "public, max-age=600"
 		}
 	})
 }
