@@ -1,6 +1,6 @@
 import type { PageLoad } from "./$types"
 
-export const load: PageLoad = async () => {
-	const prods = await (await fetch("/api/getProducts")).json()
+export const load: PageLoad = async (req) => {
+	const prods = await (await req.fetch("/api/getProducts")).json()
 	return { prods }
 }
