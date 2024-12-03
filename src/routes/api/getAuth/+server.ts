@@ -1,7 +1,6 @@
 import { env } from "$env/dynamic/private"
-import type { LayoutServerLoad } from "./$types"
 
-export const load: LayoutServerLoad = async (req) => {
+export async function GET(req) {
 	let auth = { userId: "", username: "", email: "", status: false, cart: [] }
 	const userId = req.cookies.get("svelteUserId")
 	if (userId) {
@@ -26,5 +25,5 @@ export const load: LayoutServerLoad = async (req) => {
 		}
 	}
 
-	return { auth }
+	return new Response(JSON.stringify(auth))
 }

@@ -2,21 +2,29 @@
 	import { writable } from "svelte/store"
 	import Navbar from "../components/Navbar.svelte"
 	import type { Auth } from "../types"
-	import { setContext, type Snippet } from "svelte"
-	import type { LayoutServerData } from "./$types"
+	import { onMount, setContext } from "svelte"
 
-	const { children, data }: { data: LayoutServerData; children: Snippet } = $props()
+	const { children } = $props()
+	let loaded = $state(false)
 
 	const auth = writable<Auth>({ email: "", status: false, userId: "", username: "", cart: [] })
-	$effect.pre(() => {
-		auth.set(data.auth)
+	onMount(async () => {
+		const res: Auth = await (await fetch("/api/getAuth")).json()
+		auth.set(res)
+		loaded = true
 	})
 
 	setContext("auth", auth)
 </script>
 
 <Navbar />
-<div class="container">{@render children()}</div>
+<div class="container">
+	{#if loaded}
+		{@render children()}
+	{:else}
+		<p>Please Wait</p>
+	{/if}
+</div>
 
 <style>
 	:global {
