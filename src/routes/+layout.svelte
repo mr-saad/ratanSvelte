@@ -1,20 +1,17 @@
 <script lang="ts">
-	import { writable } from "svelte/store"
+	import { auth } from "$lib/store.svelte"
 	import Navbar from "../components/Navbar.svelte"
 	import type { Auth } from "../types"
-	import { onMount, setContext } from "svelte"
+	import { onMount } from "svelte"
 
 	const { children } = $props()
 	let loaded = $state(false)
 
-	const auth = writable<Auth>({ email: "", status: false, userId: "", username: "", cart: [] })
 	onMount(async () => {
 		const res: Auth = await (await fetch("/api/getAuth")).json()
-		auth.set(res)
+		auth.auth = res
 		loaded = true
 	})
-
-	setContext("auth", auth)
 </script>
 
 <Navbar />

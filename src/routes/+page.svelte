@@ -1,15 +1,5 @@
 <script lang="ts">
-	import { getContext, onDestroy } from "svelte"
-	import type { Writable } from "svelte/store"
-	import type { Auth } from "../types"
-
-	const auth = getContext<Writable<Auth>>("auth")
-
-	let status = $state(false)
-	const unsub = auth.subscribe((val) => {
-		status = val.status
-	})
-	onDestroy(unsub)
+	import { auth } from "$lib/store.svelte"
 </script>
 
 <title>Ratan Bandhej SvelteKit</title>
@@ -25,7 +15,7 @@
 </p>
 <br />
 <p>
-	{#if status}
+	{#if auth.auth.status}
 		<a href="/account">Your Account</a>
 	{:else}
 		<a href="/sign-in">Sign In</a>

@@ -1,29 +1,18 @@
 <script lang="ts">
-	import { getContext, onDestroy } from "svelte"
-	import type { Auth, Prod } from "../../types"
-	import type { Writable } from "svelte/store"
-
-	const auth = getContext<Writable<Auth>>("auth")
-
-	let cart = $state<Prod[]>([])
-
-	const unsub = auth.subscribe((val) => {
-		cart = val.cart
-	})
-	onDestroy(unsub)
+	import { auth } from "$lib/store.svelte"
 </script>
 
 <title>Cart | Ratan Bandhej SvelteKit</title>
 <div class="grid">
-	{#if cart.length}
-		{#each cart as prod}
+	{#if auth.auth.cart.length}
+		{#each auth.auth.cart as prod}
 			<a href={"/products/" + prod.slug} class="prod">
 				<img
 					decoding="async"
 					loading="lazy"
 					fetchpriority="low"
-					width="75"
-					height="75"
+					width="100"
+					height="100"
 					src={prod.image.url}
 					alt={prod.title}
 				/>
@@ -45,21 +34,26 @@
 	}
 	.prod {
 		display: flex;
-		gap: 1rem;
 		text-decoration: none;
 		color: currentColor;
-		padding: 1rem;
 		border: 1px solid #888;
 		border-radius: 5px;
+		position: relative;
 		& img {
 			max-width: 100%;
+			height: 100%;
 			aspect-ratio: 1;
 			object-fit: cover;
 			object-position: top;
-			border-radius: 5px;
+			border-top-left-radius: 5px;
+			border-bottom-left-radius: 5px;
 		}
-		& p {
-			color: #888;
+		& > div {
+			padding: 1rem;
+			& p {
+				margin-top: 0.2rem;
+				color: #888;
+			}
 		}
 	}
 	@media (width>=640px) {

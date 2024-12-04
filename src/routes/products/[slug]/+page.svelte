@@ -1,40 +1,24 @@
 <script lang="ts">
 	import { goto } from "$app/navigation"
-	import { getContext, onDestroy } from "svelte"
+	import { auth } from "$lib/store.svelte"
 	import type { PageServerData } from "./$types"
-	import type { Auth } from "../../../types"
-	import type { Writable } from "svelte/store"
 	const { data }: { data: PageServerData } = $props()
 
 	const prod = data.prod
-	let status = $state(false)
-
-	const auth = getContext<Writable<Auth>>("auth")
 
 	let isInCart = $state(false)
-	const unsub = auth.subscribe((val) => {
-		status = val.status
-		for (let item of val.cart) {
-			if (item._id === prod._id) {
-				isInCart = true
-				break
-			}
-		}
+
+	$effect(() => {
+		isInCart = auth.auth.cart.some((item) => item._id === prod._id)
 	})
 
 	function add() {
-		if (!status) return goto("/sign-in")
-		auth.update((prev) => ({
-			...prev,
-			cart: [...prev.cart, prod]
-		}))
+		if (!auth.auth.status) return goto("/sign-in")
+		auth.auth.cart.push(prod)
 	}
 	function remove() {
-		auth.update((prev) => ({ ...prev, cart: prev.cart.filter((all) => all._id !== prod._id) }))
-		isInCart = false
+		auth.auth.cart = auth.auth.cart.filter((all) => all._id !== prod._id)
 	}
-
-	onDestroy(unsub)
 </script>
 
 <title>{prod.title} | Ratan Bandhej SvelteKi</title>

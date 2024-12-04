@@ -1,12 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/stores"
-	import { getContext, onDestroy } from "svelte"
-	import type { Auth } from "../types"
-	import type { Writable } from "svelte/store"
-	let cartLength = $state(0)
-	const cart = getContext<Writable<Auth>>("auth")
-	const unsub = cart.subscribe((val) => (cartLength = val.cart.length))
-	onDestroy(unsub)
+	import { auth } from "$lib/store.svelte"
+	const cartLength = $derived(auth.auth.cart.length)
 </script>
 
 <nav>
