@@ -12,12 +12,34 @@
 		isInCart = auth.auth.cart.some((item) => item._id === prod._id)
 	})
 
-	function add() {
+	async function add() {
 		if (!auth.auth.status) return goto("/sign-in")
 		auth.auth.cart.push(prod)
+		const res = await (
+			await fetch("/api/cart/add", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ _id: prod._id })
+			})
+		).json()
+		if (!res.ok) {
+			alert(res.message)
+			auth.auth.cart.pop()
+		}
 	}
-	function remove() {
+	async function remove() {
 		auth.auth.cart = auth.auth.cart.filter((all) => all._id !== prod._id)
+		const res = await (
+			await fetch("/api/cart/remove", {
+				method: "POST",
+				headers: { "Content-Type": "application/json" },
+				body: JSON.stringify({ _id: prod._id })
+			})
+		).json()
+		if (!res.ok) {
+			alert(res.message)
+			auth.auth.cart.push(prod)
+		}
 	}
 </script>
 

@@ -1,17 +1,16 @@
 <script lang="ts">
 	import { goto } from "$app/navigation"
-	import { getContext } from "svelte"
-	import type { Writable } from "svelte/store"
-	import type { Auth } from "../../types"
-
-	const auth = getContext<Writable<Auth>>("auth")
+	import { auth } from "$lib/store.svelte"
+	import { fade } from "svelte/transition"
 
 	let err = $state("")
+	let disabled = $state(false)
 
 	async function onsubmit(e: SubmitEvent) {
 		e.preventDefault()
 		const form = new FormData(e.currentTarget as HTMLFormElement)
 		const data = { username: form.get("username"), email: form.get("email") }
+		disabled = true
 		const res = await (
 			await fetch("/api/sign-in", {
 				method: "POST",
@@ -19,11 +18,13 @@
 				body: JSON.stringify(data)
 			})
 		).json()
+		disabled = false
 		if (res.ok) {
-			auth.set(res.auth)
+			auth.auth = res.auth
 			goto("/products")
 		} else {
 			err = res.message
+			setTimeout(() => (err = ""), 2000)
 		}
 	}
 </script>
@@ -40,12 +41,12 @@
 			name="username"
 		/>
 		<input required type="email" placeholder="E-Mail" name="email" />
-		<button>Sign In</button>
+		<button {disabled}>Sign In</button>
 	</form>
-	{#if err !== ""}
-		<p class="err">{err}</p>
-	{/if}
 	<p>Don't Have an Account? <a href="https://ratanbandhej.shop/create-account">Create One</a></p>
+	{#if err !== ""}
+		<p transition:fade={{ duration: 100 }} class="err">{err}</p>
+	{/if}
 </div>
 
 <style>
@@ -68,6 +69,10 @@
 				padding: 0.5rem;
 				cursor: pointer;
 				border: 1px solid;
+				transition: opacity 300ms ease;
+				&:disabled {
+					opacity: 0.5;
+				}
 			}
 		}
 		& .err {

@@ -1,4 +1,4 @@
-import { env } from "$env/dynamic/private"
+import query from "$lib/query.js"
 
 export async function POST(req) {
 	const { username, email } = await req.request.json()
@@ -8,13 +8,9 @@ export async function POST(req) {
 			_id,title,price,"slug":slug.current,
 			"image":images[0].asset->{url}
 		}}`
-		const res = await (
-			await fetch(
-				env.queryUrl + `?query=${encodeURIComponent(q)}&$username="${username}"&$email="${email}"`
-			)
-		).json()
-		if (res.result?._id) {
-			req.cookies.set("svelteUserId", res.result._id, {
+		const user = await query(q, { username, email })
+		if (user?._id) {
+			req.cookies.set("svelteUserId", user._id, {
 				path: "/",
 				expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)
 			})
@@ -23,11 +19,11 @@ export async function POST(req) {
 					message: "Success",
 					ok: true,
 					auth: {
-						userId: res.result._id,
-						username: res.result.username,
-						email: res.result.email,
+						userId: user._id,
+						username: user.username,
+						email: user.email,
 						status: true,
-						cart: res.result.cart
+						cart: user.cart
 					}
 				})
 			)

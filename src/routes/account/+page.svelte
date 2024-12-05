@@ -1,25 +1,19 @@
 <script lang="ts">
 	import { goto } from "$app/navigation"
-	import { getContext, onDestroy } from "svelte"
-	import type { Writable } from "svelte/store"
-	import type { Auth } from "../../types"
+	import { auth } from "$lib/store.svelte"
 
-	const auth = getContext<Writable<Auth>>("auth")
-
-	let details = $state({ username: "", email: "" })
-	const unsub = auth.subscribe((val) => (details = { email: val.email, username: val.username }))
+	let details = $derived({ username: auth.auth.username, email: auth.auth.email })
 
 	async function onclick() {
 		const conf = confirm("You'll be Signed Out. Sure?")
 		if (conf) {
 			const res = await (await fetch("/api/sign-out")).json()
 			if (res.ok) {
-				auth.set({ email: "", status: false, userId: "", username: "", cart: [] })
+				auth.auth = { email: "", status: false, userId: "", username: "", cart: [] }
 				return goto("/sign-in")
 			}
 		}
 	}
-	onDestroy(unsub)
 </script>
 
 <h1>Account</h1>

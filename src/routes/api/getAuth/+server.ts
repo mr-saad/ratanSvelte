@@ -1,4 +1,4 @@
-import { env } from "$env/dynamic/private"
+import query from "$lib/query.js"
 
 export async function GET(req) {
 	let auth = { userId: "", username: "", email: "", status: false, cart: [] }
@@ -10,17 +10,15 @@ export async function GET(req) {
 		_id,slug,title,price,"slug":slug.current,
 		"image":images[0].asset->{url}
 		}}`
-		const res = await (
-			await fetch(env.queryUrl + `?query=${encodeURIComponent(q)}&$userId="${userId}"`)
-		).json()
+		const user = await query(q, { userId })
 
-		if (res.result?._id) {
+		if (user?._id) {
 			auth = {
-				userId: res.result._id,
-				username: res.result.username,
-				email: res.result.email,
+				userId: user._id,
+				username: user.username,
+				email: user.email,
 				status: true,
-				cart: res.result.cart
+				cart: user.cart
 			}
 		}
 	}
