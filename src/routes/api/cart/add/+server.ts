@@ -1,27 +1,31 @@
+import { env } from "$env/dynamic/private"
 import mutate from "$lib/mutate.js"
+import { jwtVerify } from "jose"
 
 export const POST = async (req) => {
-	const userId = req.cookies.get("svelteUserId")
-	if (!userId) return new Response(JSON.stringify({ message: "Unauthorized", ok: false }))
-
-	const { _id } = await req.request.json()
-	try {
-		const res = await mutate([
-			{
-				patch: {
-					id: userId,
-					setIfMissing: { cart: [] },
-					insert: {
-						after: "cart[-1]",
-						items: [{ _type: "product", _ref: _id }]
+	const token = req.cookies.get("svelteUser")
+	if (!token) return Response.json({ message: "Unauthorized", ok: false })
+	const encoder = new TextEncoder()
+	const ver = await jwtVerify(token, encoder.encode(env.tokenKey))
+	if (ver) {
+		const { _id } = await req.request.json()
+		try {
+			const res = await mutate([
+				{
+					patch: {
+						id: ver.payload.userId,
+						setIfMissing: { cart: [] },
+						insert: {
+							after: "cart[-1]",
+							items: [{ _type: "product", _ref: _id }]
+						}
 					}
 				}
-			}
-		])
-		if (res?.transactionId) return new Response(JSON.stringify({ message: "Success", ok: true }))
-	} catch (error) {
-		return new Response(JSON.stringify({ message: (error as Error).message, ok: false }), {
-			status: 500
-		})
+			])
+			if (res?.transactionId) return Response.json({ message: "Success", ok: true })
+		} catch (error) {
+			return Response.json({ message: (error as Error).message, ok: false })
+		}
 	}
+	return Response.json({ message: "Unauthorized", ok: false })
 }

@@ -41,14 +41,15 @@
 			auth.auth.cart.push(prod)
 		}
 	}
+	let specs = prod.specs.split(";")
 </script>
 
 <title>{prod.title} | Ratan Bandhej SvelteKi</title>
 <div class="grid">
 	<img
 		decoding="async"
-		loading="lazy"
-		fetchpriority="low"
+		loading="eager"
+		fetchpriority="high"
 		width="400"
 		height="400"
 		src={prod.image.url}
@@ -58,11 +59,13 @@
 		<h1>{prod.title}</h1>
 		<table>
 			<tbody>
-				<tr><th>Type</th> <td>{prod.type}</td></tr>
-				<tr><th>Description</th> <td>{prod.description}</td></tr>
+				{#each specs as spec}
+					<tr><th>{spec.split(":=")[0]}</th><td>{spec.split(":=")[1]}</td></tr>
+				{/each}
 				<tr><th>Price</th> <td>₹{prod.price}</td></tr>
 			</tbody>
 		</table>
+		<p style="margin-top: 1rem;">{prod.description}</p>
 		{#if !isInCart}
 			<button onclick={add}>Add to Cart</button>
 		{:else}
@@ -73,6 +76,7 @@
 
 <style>
 	h1 {
+		font-size: 1.6rem;
 		margin-bottom: 0.5rem;
 	}
 	img {
@@ -90,6 +94,7 @@
 		gap: 2rem;
 	}
 	button {
+		width: 100%;
 		margin-top: 1rem;
 		padding: 0.5rem 1rem;
 		cursor: pointer;

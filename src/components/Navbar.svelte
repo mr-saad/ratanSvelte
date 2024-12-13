@@ -8,9 +8,6 @@
 	<h1><a href="/">RatanSvelte</a></h1>
 	<ul>
 		<li>
-			<a class:active={$page.url.pathname === "/"} href="/">Home</a>
-		</li>
-		<li>
 			<a class:active={$page.url.pathname.includes("/products")} href="/products">Products</a>
 		</li>
 		<li>
@@ -20,7 +17,7 @@
 					width="20"
 					height="20"
 					viewBox="0 0 24 24"
-					fill="none"
+					fill={cartLength ? "currentColor" : "none"}
 					stroke="currentColor"
 					stroke-width="2"
 					stroke-linecap="round"
@@ -63,7 +60,7 @@
 					right: -8px;
 					width: 17px;
 					line-height: 17px;
-					font-size: 15px;
+					font-size: 12px;
 					text-align: center;
 					border-radius: 1000px;
 					background: white;

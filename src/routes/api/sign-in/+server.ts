@@ -1,4 +1,6 @@
+import { env } from "$env/dynamic/private"
 import query from "$lib/query.js"
+import { SignJWT } from "jose"
 
 export async function POST(req) {
 	const { username, email } = await req.request.json()
@@ -10,25 +12,27 @@ export async function POST(req) {
 		}}`
 		const user = await query(q, { username, email })
 		if (user?._id) {
-			req.cookies.set("svelteUserId", user._id, {
+			const encoder = new TextEncoder()
+			const token = await new SignJWT({ userId: user._id })
+				.setProtectedHeader({ alg: "HS256" })
+				.sign(encoder.encode(env.tokenKey))
+			req.cookies.set("svelteUser", token, {
 				path: "/",
-				expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 7)
+				expires: new Date(Date.now() + 1000 * 60 * 60 * 24 * 365)
 			})
-			return new Response(
-				JSON.stringify({
-					message: "Success",
-					ok: true,
-					auth: {
-						userId: user._id,
-						username: user.username,
-						email: user.email,
-						status: true,
-						cart: user.cart
-					}
-				})
-			)
+			return Response.json({
+				message: "Success",
+				ok: true,
+				auth: {
+					userId: user._id,
+					username: user.username,
+					email: user.email,
+					status: true,
+					cart: user.cart
+				}
+			})
 		}
-		return new Response(JSON.stringify({ message: "Invalid Credentials", ok: false }))
+		return Response.json({ message: "Invalid Credentials", ok: false })
 	}
-	return new Response(JSON.stringify({ message: "Empty Fields Detected", ok: false }))
+	return Response.json({ message: "Empty Fields Detected", ok: false })
 }

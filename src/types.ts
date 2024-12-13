@@ -7,7 +7,7 @@ export type Prod = {
 }
 export type ProdType = Prod & {
 	description: string
-	type: string
+	specs: string
 }
 export type Auth = {
 	userId: string
