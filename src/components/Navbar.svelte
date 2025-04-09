@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { page } from "$app/stores"
 	import { auth } from "$lib/store.svelte"
-	const cartLength = $derived(auth.auth.cart.length)
+	const cartLength = $derived(auth.cart.length)
 </script>
 
 <nav>

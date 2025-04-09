@@ -15,4 +15,5 @@ export type Auth = {
 	email: string
 	status: boolean
 	cart: Prod[]
+	loading: boolean
 }

@@ -20,7 +20,7 @@
 		).json()
 		disabled = false
 		if (res.ok) {
-			auth.auth = res.auth
+			Object.assign(auth, res.auth)
 			goto("/products")
 		} else {
 			err = res.message
