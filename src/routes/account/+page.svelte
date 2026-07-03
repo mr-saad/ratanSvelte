@@ -1,6 +1,6 @@
 <script lang="ts">
   import { goto } from "$app/navigation"
-  import { auth } from "$lib/store.svelte"
+  import { auth } from "$lib/store/auth.svelte"
 
   let details = $derived({ username: auth.username, email: auth.email })
 

@@ -1,41 +1,43 @@
 <script lang="ts">
-  import { auth } from "$lib/store.svelte"
-  import { remove } from "$lib/utils"
+  import { auth } from "$lib/store/auth.svelte"
+  import { remove } from "$lib/utils/cart"
 </script>
 
 <svelte:head>
   <title>Cart | Ratan Bandhej SvelteKit</title>
 </svelte:head>
-<div class="checkout">
-  <h1>Cart</h1>
-  {#if auth.cart.length}
-    <a href="/cart/checkout">Checkout</a>
-  {/if}
-</div>
-<div class="grid">
-  {#if auth.cart.length}
-    {#each auth.cart as prod}
-      <div class="prod">
-        <img
-          decoding="async"
-          loading="lazy"
-          fetchpriority="low"
-          width="100"
-          height="100"
-          src={prod.image.url}
-          alt={prod.title}
-        />
-        <div>
-          <a href={"/products/" + prod.slug}>
-            {prod.title}
-          </a>
-          <button onclick={() => remove(prod)}>Remove</button>
+<div class="content_container">
+  <div class="checkout">
+    <h1>Cart</h1>
+    {#if auth.cart.length}
+      <a href="/cart/checkout">Checkout</a>
+    {/if}
+  </div>
+  <div class="grid">
+    {#if auth.cart.length}
+      {#each auth.cart as prod}
+        <div class="prod">
+          <img
+            decoding="async"
+            loading="lazy"
+            fetchpriority="low"
+            width="100"
+            height="100"
+            src={prod.image.url}
+            alt={prod.title}
+          />
+          <div>
+            <a href={"/products/" + prod.slug}>
+              {prod.title}
+            </a>
+            <button onclick={() => remove(prod)}>Remove</button>
+          </div>
         </div>
-      </div>
-    {/each}
-  {:else}
-    <p>Empty</p>
-  {/if}
+      {/each}
+    {:else}
+      <p>Empty</p>
+    {/if}
+  </div>
 </div>
 
 <style>

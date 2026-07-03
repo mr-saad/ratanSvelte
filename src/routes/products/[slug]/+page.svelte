@@ -1,97 +1,30 @@
 <script lang="ts">
-  import { auth } from "$lib/store.svelte"
-  import { add, remove } from "$lib/utils"
-  import type { PageServerData } from "./$types"
-  const { data }: { data: PageServerData } = $props()
-
-  const prod = data.prod
-
-  let isInCart = $state(false)
-
-  $effect(() => {
-    isInCart = auth.cart.some((item) => item._id === prod._id)
-  })
-
-  let specs = prod.specs.split(";")
+  import Product from "$lib/components/Product.svelte"
+  import type { PageData } from "./$types"
+  import ImgSwiper from "./ImgSwiper.svelte"
+  import ProductDetails from "./ProductDetails.svelte"
+  const { data }: { data: PageData } = $props()
 </script>
 
 <svelte:head>
-  <title>{prod.title} | Ratan Bandhej SvelteKi</title>
+  <title>{data.product.title} | Ratan Bandhej</title>
+  <meta name="description" content={data.product.description} />
+  <meta name="keywords" content={data.product.title.split(" ").join(", ")} />
 </svelte:head>
-<div class="grid">
-  <img
-    decoding="async"
-    loading="eager"
-    fetchpriority="high"
-    width="400"
-    height="400"
-    src={prod.image.url}
-    alt={prod.title}
-  />
-  <div>
-    <h1>{prod.title}</h1>
-    <table>
-      <tbody>
-        {#each specs as spec}
-          <tr><th>{spec.split(":=")[0]}</th><td>{spec.split(":=")[1]}</td></tr>
+
+<div class="content_container">
+  <div class="md:pt-10">
+    <div class="card grid overflow-clip md:grid-cols-[auto_1fr]">
+      <ImgSwiper images={data.product.images} title={data.product.title} />
+      <ProductDetails {...data.product} />
+    </div>
+    {#if data.similarProducts.length}
+      <h2 class="heading mt-20 mb-2">You Might Also Like</h2>
+      <div class="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4">
+        {#each data.similarProducts as similar}
+          <Product {...similar} />
         {/each}
-        <tr><th>Price</th> <td>₹{prod.price}</td></tr>
-      </tbody>
-    </table>
-    <p style="margin-top: 1rem;">{prod.description}</p>
-    {#if !auth.loading}
-      {#if !isInCart}
-        <button onclick={() => add(prod)}>Add to Cart</button>
-      {:else}
-        <button onclick={() => remove(prod)}>Remove from Cart</button>
-      {/if}
+      </div>
     {/if}
   </div>
 </div>
-
-<style>
-  h1 {
-    font-size: 1.6rem;
-    margin-bottom: 0.5rem;
-  }
-  img {
-    aspect-ratio: 1;
-    border-radius: 5px;
-    object-fit: cover;
-    object-position: top;
-    width: 100%;
-    max-width: 450px;
-    height: 100%;
-    justify-self: center;
-  }
-  .grid {
-    display: grid;
-    gap: 2rem;
-  }
-  button {
-    @media (width<640px) {
-      width: 100%;
-    }
-    margin-top: 1rem;
-    padding: 0.5rem 1rem;
-    cursor: pointer;
-  }
-
-  table th {
-    vertical-align: top;
-    text-align: left;
-    padding-inline-end: 2rem;
-  }
-  table th,
-  table td {
-    padding-block: 0.5rem;
-  }
-  @media (width>768px) {
-    img {
-      justify-self: end;
-    }
-    .grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-</style>

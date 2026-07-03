@@ -1,43 +1,39 @@
 <script lang="ts">
-  import { auth } from "$lib/store.svelte"
-  import Navbar from "../components/Navbar.svelte"
-  import type { Auth } from "../types"
   import { onMount } from "svelte"
+  import { navigating } from "$app/state"
+  import Navbar from "$lib/components/Navbar.svelte"
+  import Footer from "$lib/components/Footer.svelte"
+  import "./app.css"
+  import { auth, emptyAuth } from "$lib/store/auth.svelte"
 
   const { children } = $props()
 
-  onMount(async () => {
-    const res: Auth = await (await fetch("/api/getAuth")).json()
-    Object.assign(auth, res)
-    auth.loading = false
+  onMount(() => {
+    const getAuth = async () => {
+      try {
+        const res = await fetch("/api/getAuth")
+        const data = await res.json()
+        if (data?.username) auth.set(data)
+        else auth.set(emptyAuth)
+      } catch (err) {
+        auth.set(emptyAuth)
+        console.error(err)
+      }
+    }
+    getAuth()
   })
 </script>
 
+<svelte:head>
+  <title>Ratan Bandhej | One Place for all Your Bandhani Needs</title>
+</svelte:head>
+
 <Navbar />
-<div class="container">
-  {@render children()}
-</div>
-
-<style>
-  :global {
-    * {
-      margin: 0;
-      padding: 0;
-      box-sizing: border-box;
-    }
-    html {
-      color-scheme: light dark;
-      font-family: system-ui, sans-serif;
-      scrollbar-width: none;
-    }
-  }
-  .container {
-    padding: 1rem 5rem;
-  }
-
-  @media (width<=640px) {
-    .container {
-      padding: 1.2rem;
-    }
-  }
-</style>
+<main class="min-h-screen">
+  {#if navigating.to}
+    <p class="p-5 md:px-20">Navigating to {navigating.to.url.pathname}</p>
+  {:else}
+    {@render children()}
+  {/if}
+</main>
+<Footer />

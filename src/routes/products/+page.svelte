@@ -1,71 +1,39 @@
 <script lang="ts">
-  import type { PageServerData } from "./$types"
-  const { data }: { data: PageServerData } = $props()
+  import { page } from "$app/state"
+  import Product from "$lib/components/Product.svelte"
+  import type { PageProps } from "./$types"
+  import FilterBtns from "./FilterBtns.svelte"
+  const { data }: PageProps = $props()
+
+  const search = $derived(page.url.searchParams)
+
+  let products = $derived(
+    search.get("category")
+      ? data.prods.filter(({ type }) => type === search.get("category"))
+      : data.prods
+  )
+  $effect(() => {
+    if (search.get("category")) {
+      products = data.prods.filter(({ type }) => type === search.get("category"))
+    } else {
+      products = data.prods
+    }
+  })
 </script>
 
 <svelte:head>
-  <title>Products | Ratan Bandhej SvelteKit</title>
+  <title>Products | Ratan Bandhej</title>
 </svelte:head>
-<div class="grid">
-  {#each data.prods as prod}
-    <div class="prod">
-      <img
-        decoding="async"
-        loading="lazy"
-        fetchpriority="low"
-        width="100"
-        height="100"
-        src={prod.image.url}
-        alt={prod.title}
-      />
-      <div>
-        <a href={"/products/" + prod.slug}>
-          {prod.title}
-        </a>
-        <p>₹{prod.price}</p>
-      </div>
-    </div>
-  {/each}
+
+<div class="content_container">
+  <FilterBtns categories={data.categories} />
+  <div class="grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-5">
+    {#if products.length}
+      {#each products as prod, index}
+        <Product {...prod} {index} />
+      {/each}
+    {:else}
+      <p>No Products in "{search.get("category")}"</p>
+    {/if}
+  </div>
 </div>
-
-<style>
-  .grid {
-    display: grid;
-    gap: 1.5rem;
-  }
-  .prod {
-    display: flex;
-
-    img {
-      border-radius: 5px;
-      max-width: 100%;
-      height: 100%;
-      aspect-ratio: 1;
-      object-fit: cover;
-      object-position: top;
-      border-radius: 5px;
-    }
-    > div {
-      padding-left: 1rem;
-      a {
-        text-decoration: none;
-        color: currentColor;
-        font-weight: bold;
-      }
-      p {
-        margin-top: 0.2rem;
-        color: #888;
-      }
-    }
-  }
-  @media (width>=640px) {
-    .grid {
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-  }
-  @media (width>=1024px) {
-    .grid {
-      grid-template-columns: repeat(3, minmax(0, 1fr));
-    }
-  }
-</style>

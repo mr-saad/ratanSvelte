@@ -1,33 +1,13 @@
-import { goto } from "$app/navigation"
-import type { Prod, ProdType } from "../types"
-import { auth } from "./store.svelte"
+import { clsx, type ClassValue } from "clsx";
+import { twMerge } from "tailwind-merge";
 
-export async function add(prod: ProdType | Prod) {
-  if (!auth.status) return goto("/sign-in")
-  auth.cart.push(prod)
-  const res = await (
-    await fetch("/api/cart/add", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ _id: prod._id })
-    })
-  ).json()
-  if (!res.ok) {
-    alert(res.message)
-    auth.cart.pop()
-  }
+export function cn(...inputs: ClassValue[]) {
+	return twMerge(clsx(inputs));
 }
-export async function remove(prod: ProdType | Prod) {
-  auth.cart = auth.cart.filter((all) => all._id !== prod._id)
-  const res = await (
-    await fetch("/api/cart/remove", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ _id: prod._id })
-    })
-  ).json()
-  if (!res.ok) {
-    alert(res.message)
-    auth.cart.push(prod)
-  }
-}
+
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type WithoutChild<T> = T extends { child?: any } ? Omit<T, "child"> : T;
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+export type WithoutChildren<T> = T extends { children?: any } ? Omit<T, "children"> : T;
+export type WithoutChildrenOrChild<T> = WithoutChildren<WithoutChild<T>>;
+export type WithElementRef<T, U extends HTMLElement = HTMLElement> = T & { ref?: U | null };
