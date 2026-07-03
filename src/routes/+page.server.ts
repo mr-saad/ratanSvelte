@@ -13,7 +13,9 @@ export const load = async () => {
               price,
               "slug": slug.current
         },
-        "products": *[_type=="product"]{
+        "sections":[{
+          "title": "Dupatta",
+          "products": *[_type=="product" && type=="Dupatta"][0..7]{
               _id,
               title,
               description,
@@ -21,12 +23,45 @@ export const load = async () => {
               "image": images[0].asset->url,
               price,
               "slug": slug.current
-        }
-       }`,
+          }},
+          {
+            "title": "Saree",
+            "products": *[_type=="product" && type=="Saree"][0..7]{
+              _id,
+              title,
+              description,
+              type,
+              "image": images[0].asset->url,
+              price,
+              "slug": slug.current
+          }},
+          {
+            "title": "Dress",
+            "products": *[_type=="product" && type=="Dress"][0..7]{
+              _id,
+              title,
+              description,
+              type,
+              "image": images[0].asset->url,
+              price,
+              "slug": slug.current
+          }},
+          {
+            "title": "Top Material",
+            "products": *[_type=="product" && type=="Top Material"][0..7]{
+                _id,
+                title,
+                description,
+                type,
+                "image": images[0].asset->url,
+                price,
+                "slug": slug.current
+            }
+          }
+          ]
+        }`,
     { count: 5 }
   )
-
-  console.log(home)
 
   return { home }
 }

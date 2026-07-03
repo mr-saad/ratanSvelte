@@ -27,7 +27,7 @@
 
 <div class="content_container">
   <FilterBtns categories={data.categories} />
-  <div class="grid sm:grid-cols-2 md:grid-cols-3 2xl:grid-cols-4 gap-5">
+  <div class="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4">
     {#if products.length}
       {#each products as prod, index}
         <Product {...prod} {index} />

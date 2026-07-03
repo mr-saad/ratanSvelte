@@ -22,11 +22,14 @@
 </script>
 
 <swiper-container
+  pagination-clickable="true"
   init="false"
-  class="max-h-max cursor-grab overflow-clip px-5 pb-10 active:cursor-grabbing md:px-20"
+  class="max-h-max overflow-clip px-5 pb-10 md:px-20"
 >
   {#each products as prod}
-    <swiper-slide class="card group grid! items-center overflow-clip select-none md:grid-cols-2">
+    <swiper-slide
+      class="card group grid! cursor-grab items-center overflow-clip select-none active:cursor-grabbing md:grid-cols-2"
+    >
       <div class="p-5">
         <h2 title={prod.title} class="highlight line-clamp-2 text-2xl font-semibold capitalize">
           {prod.title}

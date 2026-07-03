@@ -1,9 +1,11 @@
 <script>
+  import Button from "$lib/components/ui/button/button.svelte"
+
   let showCartBtn = $state(true)
 </script>
 
 {#if showCartBtn}
-  <button onclick={() => (showCartBtn = !showCartBtn)} class="btn mt-4">
+  <Button onclick={() => (showCartBtn = !showCartBtn)} class="btn mt-4">
     <span class="flex items-center justify-center gap-1">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -24,9 +26,10 @@
       </svg>
       Add to Cart
     </span>
-  </button>
+  </Button>
 {:else}
-  <button
+  <Button
+    variant="destructive"
     onclick={() => (showCartBtn = !showCartBtn)}
     class="btn mt-4 border-red-700! bg-red-700! text-white! hover:bg-transparent! hover:text-red-700!"
   >
@@ -50,5 +53,5 @@
       </svg>
       Remove from Cart
     </span>
-  </button>
+  </Button>
 {/if}

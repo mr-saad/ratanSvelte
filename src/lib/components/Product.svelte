@@ -12,7 +12,7 @@
         src={`${image}?w=480&auto=format`}
         width={400}
         height={400}
-        class="aspect-square w-full object-cover object-top transition duration-400 ease-in-out will-change-transform group-hover:scale-105"
+        class="aspect-square w-full object-cover object-top transition duration-400 ease-in-out will-change-transform group-focus-within:scale-105 group-hover:scale-105"
       />
     {/if}
     <div

@@ -1,4 +1,4 @@
-import { tokenKey } from "$env/dynamic/private"
+import { tokenKey } from "$env/static/private"
 import sanity from "$lib/server/sanity.server"
 import { redirect } from "@sveltejs/kit"
 import { jwtVerify } from "jose"

@@ -32,5 +32,5 @@
   <Carousel products={data.home.newArrivals} />
 </div>
 <div class="content_container">
-  <Sections products={data.home.products} />
+  <Sections sections={data.home.sections} />
 </div>
