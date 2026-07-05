@@ -1,6 +1,5 @@
 <script lang="ts">
   import { onMount } from "svelte"
-  import { navigating } from "$app/state"
   import Navbar from "$lib/components/Navbar.svelte"
   import Footer from "$lib/components/Footer.svelte"
   import "./app.css"
@@ -13,10 +12,10 @@
       try {
         const res = await fetch("/api/getAuth")
         const data = await res.json()
-        if (data?.username) auth.set(data)
-        else auth.set(emptyAuth)
+        if (data?.username) auth.value = data
+        else auth.value = emptyAuth
       } catch (err) {
-        auth.set(emptyAuth)
+        auth.value = emptyAuth
         console.error(err)
       }
     }
@@ -30,10 +29,6 @@
 
 <Navbar />
 <main class="min-h-screen">
-  {#if navigating.to}
-    <p class="p-5 md:px-20">Navigating to {navigating.to.url.pathname}</p>
-  {:else}
-    {@render children()}
-  {/if}
+  {@render children()}
 </main>
 <Footer />

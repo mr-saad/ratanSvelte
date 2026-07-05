@@ -13,18 +13,16 @@
 </svelte:head>
 
 <div class="content_container">
-  <div class="md:pt-10">
-    <div class="card grid overflow-clip md:grid-cols-[auto_1fr]">
-      <ImgSwiper images={data.product.images} title={data.product.title} />
-      <ProductDetails {...data.product} />
-    </div>
-    {#if data.similarProducts.length}
-      <h2 class="heading mt-20 mb-2">You Might Also Like</h2>
-      <div class="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4">
-        {#each data.similarProducts as similar}
-          <Product {...similar} />
-        {/each}
-      </div>
-    {/if}
+  <div class="card grid overflow-clip md:grid-cols-[auto_1fr]">
+    <ImgSwiper images={data.product.images} title={data.product.title} />
+    <ProductDetails {...data.product} />
   </div>
+  {#if data.similarProducts.length}
+    <h2 class="heading mt-20 mb-2">You Might Also Like</h2>
+    <div class="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4">
+      {#each data.similarProducts as similar}
+        <Product {...similar} />
+      {/each}
+    </div>
+  {/if}
 </div>

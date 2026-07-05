@@ -1,5 +1,6 @@
-<script>
+<script lang="ts">
   import { page } from "$app/state"
+  import { cn } from "$lib/utils"
 
   const links = [
     {
@@ -16,57 +17,47 @@
     }
   ]
 
-  const CloseNav = () => {
-    document.querySelector("nav ul").classList.remove("grid")
-    document.querySelector("nav ul").classList.add("hidden")
-    document.querySelector(".line1").classList.remove("rotate-45", "translate-y-2")
-    document.querySelector(".line2").classList.remove("-rotate-45", "-translate-y-[2px]")
-  }
-
-  $effect(() => {
-    const nav = document.querySelector("nav")
-
-    const listener = document.addEventListener("click", (e) => {
-      if (!nav.contains(e.target) || e.target.tagName === "A" || e.target.tagName === "svg")
-        CloseNav()
-    })
-
-    return () => removeEventListener("click", listener)
-  })
-
+  let { navOpen, onClose } = $props()
   const pathname = $derived(page.url.pathname)
 </script>
 
-<ul
-  class={`col-span-3 row-start-2 mt-5 hidden grid-flow-row border-t border-white/10 pt-5 text-white capitalize md:col-span-1 md:row-start-auto md:mt-0 md:grid md:grid-flow-col md:place-content-center md:border-none md:pt-0`}
+<button
+  onclick={(e) => {
+    if (e.target === e.currentTarget) onClose()
+  }}
+  class={cn(
+    "fixed top-16.5 left-0 col-span-3 row-start-2 h-[85vh] w-full items-start text-start md:static  md:col-span-1 md:col-start-2  md:row-start-1 md:h-auto",
+    navOpen ? "flex" : "hidden md:flex"
+  )}
 >
-  <li class="md:inline">
-    <a
-      class={`block pb-2 transition hover:opacity-100 md:inline md:px-2 md:py-0 ${
-        pathname === "/" ? "opacity-100" : "opacity-60"
-      }`}
-      href={"/"}
-    >
-      Home
-    </a>
-  </li>
-  {#each links as link}
-    <li class="md:inline">
+  <ul
+    class={cn(
+      "flex w-full flex-col bg-black/70 px-5 py-2 text-white capitalize md:flex-row md:justify-center md:bg-transparent"
+    )}
+  >
+    <li class="">
       <a
-        class={`block py-2 transition hover:opacity-100 md:inline md:px-2 md:py-0 ${
-          pathname.startsWith(link.url) ? "opacity-100" : "opacity-60"
+        onclick={onClose}
+        class={`block pb-2 transition hover:opacity-100  md:px-2 md:py-0 ${
+          pathname === "/" ? "opacity-100" : "opacity-60"
         }`}
-        href={link.url}
+        href={"/"}
       >
-        {link.text}
+        Home
       </a>
     </li>
-  {/each}
-
-  <div class="md:hidden">
-    <!-- <AccountLink /> -->
-  </div>
-  <div class="sm:hidden">
-    <!-- <ThemeToggle /> -->
-  </div>
-</ul>
+    {#each links as link}
+      <li class="">
+        <a
+          onclick={onClose}
+          class={`block py-2 transition hover:opacity-100  md:px-2 md:py-0 ${
+            pathname.startsWith(link.url) ? "opacity-100" : "opacity-60"
+          }`}
+          href={link.url}
+        >
+          {link.text}
+        </a>
+      </li>
+    {/each}
+  </ul>
+</button>

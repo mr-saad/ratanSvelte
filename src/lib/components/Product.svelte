@@ -1,9 +1,9 @@
 <script>
-  const { slug, index, image, title } = $props()
+  const { slug, index, image, title, type } = $props()
 </script>
 
 <div class="card group relative overflow-hidden">
-  <a href={`/products/${slug}`}>
+  <a href={`/products/${type}/${slug}`}>
     {#if image}
       <img
         fetchPriority={index === 0 ? "high" : "low"}
@@ -16,7 +16,7 @@
       />
     {/if}
     <div
-      class="absolute inset-0 flex flex-col justify-end bg-linear-to-t from-[#111]/80 to-transparent p-4"
+      class="absolute inset-0 flex flex-col justify-end bg-linear-to-t from-[#111]/80 to-transparent p-4 opacity-0 transition group-focus-within:opacity-100 group-hover:opacity-100"
     >
       <h2 class="text-base text-white capitalize">{title}</h2>
     </div>

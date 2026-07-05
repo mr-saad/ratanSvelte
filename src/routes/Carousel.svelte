@@ -21,11 +21,7 @@
   })
 </script>
 
-<swiper-container
-  pagination-clickable="true"
-  init="false"
-  class="max-h-max overflow-clip px-5 pb-10 md:px-20"
->
+<swiper-container pagination-clickable="true" class="overflow-clip pb-10">
   {#each products as prod}
     <swiper-slide
       class="card group grid! cursor-grab items-center overflow-clip select-none active:cursor-grabbing md:grid-cols-2"
@@ -35,7 +31,7 @@
           {prod.title}
         </h2>
         <p title={prod.description} class="mb-2 line-clamp-1">{prod.description}</p>
-        <Button role="a" href={"/products/" + prod.slug} class="">View More</Button>
+        <Button role="a" href={`/products/${prod.type}/${prod.slug}`} class="">View More</Button>
       </div>
       {#if prod.image}
         <div class="md:justify-self-end">

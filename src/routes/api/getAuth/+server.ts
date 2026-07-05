@@ -11,11 +11,12 @@ export async function GET({ cookies }) {
   const ver = await jwtVerify(token, encoder.encode(tokenKey))
   if (ver) {
     const q = `*[_type=="user" && _id==$userId][0]{
-		_id,username,email,
-		"cart":*[_type=="product" && _id in ^.cart[]._ref]{
-		_id,slug,title,price,"slug":slug.current,
-		"image":images[0].asset->{url}
-		}}`
+  		_id,username,email,
+  		"cart":cart[]->{
+  			_id,slug,type,title,price,"slug":slug.current,
+  			"image":images[0].asset->{url}
+  		}
+		}`
     const user = await sanity.fetch(q, { userId: ver.payload.userId })
     if (user) {
       auth = {

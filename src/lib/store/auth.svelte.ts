@@ -1,9 +1,8 @@
-import { writable } from "svelte/store"
-
 export type CartItem = {
   id: string
   title: string
   slug: string
+  type: string
   image: { url: string }
 }
 
@@ -25,4 +24,4 @@ export const emptyAuth = {
   loading: true
 }
 
-export const auth = writable<Auth>(emptyAuth)
+export const auth = $state<{ value: Auth }>({ value: emptyAuth })

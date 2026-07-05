@@ -4,7 +4,7 @@
   <link rel="canonical" href="/terms-conditions" />
 </svelte:head>
 
-<div class="content_container mx-auto max-w-4xl">
+<div class="content_container">
   <h2 class="heading">Terms and Conditions</h2>
 
   <p>Welcome to Ratan Bandhej!</p>

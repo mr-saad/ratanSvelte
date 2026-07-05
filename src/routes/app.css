@@ -112,7 +112,7 @@ body {
 }
 
 .content_container {
-  @apply p-5 md:px-20;
+  @apply mx-auto max-w-7xl p-5 pt-23;
 }
 
 .swiper-slide-thumb-active {

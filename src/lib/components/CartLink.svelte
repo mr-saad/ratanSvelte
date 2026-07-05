@@ -1,5 +1,4 @@
 <script lang="ts">
-  import type { CartItem } from "$lib/store/auth.svelte"
   import { auth } from "$lib/store/auth.svelte"
   import Button from "./ui/button/button.svelte"
   import SheetClose from "./ui/sheet/sheet-close.svelte"
@@ -11,10 +10,7 @@
   import Sheet from "./ui/sheet/sheet.svelte"
   import ShoppingCart from "@lucide/svelte/icons/shopping-cart"
 
-  let cart = $state<CartItem[]>([])
-  auth.subscribe((state) => {
-    cart = state.cart
-  })
+  let cart = $derived(auth.value.cart)
 </script>
 
 <Sheet>
@@ -34,16 +30,18 @@
     <div class="grid gap-2 px-5">
       {#if cart.length > 0}
         {#each cart as prod}
-          <a href={`/products/${prod.slug}`} class="flex gap-2">
-            <img
-              src={`${prod.image.url}?w=100&auto=format`}
-              width={50}
-              height={50}
-              class="aspect-square object-cover"
-              alt={prod.title}
-            />
-            <strong>{prod.title}</strong>
-          </a>
+          <SheetClose>
+            <a href={`/products/${prod.type}/${prod.slug}`} class="flex gap-2">
+              <img
+                src={`${prod.image.url}?w=100&auto=format`}
+                width={50}
+                height={50}
+                class="aspect-square h-full object-cover"
+                alt={prod.title}
+              />
+              <strong class="line-clamp-2 text-start">{prod.title}</strong>
+            </a>
+          </SheetClose>
         {/each}
       {/if}
     </div>
