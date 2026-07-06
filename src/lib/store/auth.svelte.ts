@@ -1,5 +1,5 @@
 export type CartItem = {
-  id: string
+  _id: string
   title: string
   slug: string
   type: string

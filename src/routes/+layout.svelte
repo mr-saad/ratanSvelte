@@ -12,10 +12,11 @@
       try {
         const res = await fetch("/api/getAuth")
         const data = await res.json()
-        if (data?.username) auth.value = data
-        else auth.value = emptyAuth
+        if (data?.username)
+          auth.value = { ...data, cart: data.cart.filter(Boolean), loading: false }
+        else auth.value = { ...emptyAuth, loading: false }
       } catch (err) {
-        auth.value = emptyAuth
+        auth.value = { ...emptyAuth, loading: false }
         console.error(err)
       }
     }

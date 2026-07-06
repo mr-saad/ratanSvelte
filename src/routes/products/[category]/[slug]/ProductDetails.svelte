@@ -1,7 +1,7 @@
 <script lang="ts">
   import CartBtn from "./CartBtn.svelte"
 
-  const { title, price, description, specs, colours } = $props()
+  const { _id, images, title, slug, type, price, description, specs, colours } = $props()
   const sepratedSpecs = specs.split(";")
   const separatedColours = colours ? colours.split(";") : []
 </script>
@@ -15,8 +15,8 @@
   </span>
   <p class="mt-2 whitespace-pre-wrap">{description}</p>
 
-  <CartBtn />
-  <hr class="mt-5 dark:border-white/5 border-black/5" />
+  <CartBtn product={{ _id, images, title, slug, type, price }} />
+  <hr class="mt-5 border-black/5 dark:border-white/5" />
   <table class="border-separate border-spacing-y-5">
     <tbody>
       {#each sepratedSpecs as item}
@@ -28,7 +28,7 @@
         </tr>
       {/each}
       {#if colours}
-        <tr class="capitalize py-2">
+        <tr class="py-2 capitalize">
           <td class="highlight align-top font-bold">Instock</td>
           <td class="pl-4">
             {#each separatedColours as clr, index}

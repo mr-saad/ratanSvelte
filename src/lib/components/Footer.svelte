@@ -148,7 +148,7 @@
         <span class="mx-2">|</span>
         <a class="transition hover:text-white" href="/privacy-policy"> Privacy Policy </a>
       </div>
-      <p>
+      <p class="md:text-end">
         All Rights Reserved &copy; {new Date().getFullYear()} Ratan Bandhej By{" "}
         <a
           rel="refferer noopener"

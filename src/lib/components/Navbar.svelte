@@ -10,7 +10,7 @@
 <nav
   class={`nav fixed top-0 z-3 w-full border-b border-white/10 bg-[#111]/90 px-5 py-2 shadow-xl backdrop-blur-[2px] select-none md:text-base`}
 >
-  <div class="mx-auto grid max-w-7xl grid-cols-[auto_1fr_auto] items-center">
+  <div class="mx-auto grid max-w-7xl grid-cols-[1fr_2fr_1fr] items-center">
     <!-- menu toggler -->
     <button
       title="Menu"

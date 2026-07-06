@@ -12,7 +12,7 @@ export async function GET({ cookies }) {
   if (ver) {
     const q = `*[_type=="user" && _id==$userId][0]{
   		_id,username,email,
-  		"cart":cart[]->{
+  		"cart":cart[defined(_ref)]->{
   			_id,slug,type,title,price,"slug":slug.current,
   			"image":images[0].asset->{url}
   		}

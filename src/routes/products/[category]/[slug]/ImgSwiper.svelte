@@ -2,7 +2,6 @@
   import { onMount } from "svelte"
   import { register } from "swiper/element/bundle"
   import type { Swiper } from "swiper/types"
-  register()
 
   const { images, title }: { images: string[]; title: string } = $props()
 
@@ -10,6 +9,7 @@
   let thumbSwiper: HTMLElement & { swiper: Swiper }
 
   onMount(() => {
+    register()
     mainSwiper.swiper.thumbs.swiper = thumbSwiper.swiper
     mainSwiper.swiper.thumbs.init()
   })
