@@ -1,13 +1,14 @@
 <script lang="ts">
   import { page } from "$app/state"
   import Product from "$lib/components/Product.svelte"
+  import ProductGrid from "$lib/components/ui/product-grid.svelte"
 </script>
 
 <svelte:head>
   <title>Products | Ratan Bandhej</title>
 </svelte:head>
 
-<div class="grid grid-cols-2 gap-5 md:grid-cols-3 xl:grid-cols-4">
+<ProductGrid>
   {#if page.data.products.length}
     {#each page.data.products as prod, index}
       <Product {...prod} {index} />
@@ -15,4 +16,4 @@
   {:else}
     <p>No Products</p>
   {/if}
-</div>
+</ProductGrid>

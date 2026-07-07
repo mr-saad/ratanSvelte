@@ -6,7 +6,7 @@
   const activeCategory = $derived(decodeURIComponent(page.url.pathname.split("/")[2] || ""))
 </script>
 
-<aside class="flex flex-col gap-2 self-start bg-stone-100 p-5">
+<aside class="flex flex-col gap-2 self-start bg-white p-5">
   <a
     href={`/products`}
     class={cn("border-b border-transparent transition", !activeCategory && "border-black/20")}

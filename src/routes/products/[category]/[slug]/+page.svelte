@@ -12,7 +12,7 @@
   <meta name="keywords" content={data.product.title.split(" ").join(", ")} />
 </svelte:head>
 
-<div class="content_container">
+<div class="content_container pt-23!">
   <div class="card grid overflow-clip md:grid-cols-[auto_1fr]">
     <ImgSwiper images={data.product.images} title={data.product.title} />
     <ProductDetails {...data.product} />

@@ -96,23 +96,16 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-.headersvg {
-  fill: #111;
-}
-
-.dark .headersvg {
-  fill: #fff;
-}
 .dark .swiper-pagination-bullet {
   --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.5);
 }
 
 body {
-  @apply text-sm text-[#111]/70 transition-colors md:text-base dark:bg-[#111] dark:text-white/60;
+  @apply bg-rose-50 text-stone-500 transition-colors md:text-base dark:bg-[#111] dark:text-white/60;
 }
 
 .content_container {
-  @apply mx-auto max-w-7xl p-5 pt-23;
+  @apply mx-auto max-w-7xl p-5;
 }
 
 .swiper-slide-thumb-active {
@@ -121,10 +114,10 @@ body {
 
 /*custom utilities*/
 .card {
-  @apply shadow-xl;
+  @apply bg-white;
 }
 .heading {
-  @apply text-3xl font-bold text-black dark:text-white;
+  @apply font-serif text-3xl text-black dark:text-white;
 }
 .highlight {
   @apply text-black dark:text-white;

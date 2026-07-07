@@ -7,7 +7,7 @@
   <meta name="keywords" content="Ratan Bandhej, Contact, Email, Phone, Support, Inquiries" />
 </svelte:head>
 
-<div class="content_container">
+<div class="content_container pt-23!">
   <h1 class="heading">Contact Us</h1>
   <p>
     Thank you for your interest in Ratan Bandhej. We are delighted to assist you with any inquiries,

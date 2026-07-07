@@ -10,7 +10,7 @@
   />
 </svelte:head>
 
-<div class="content_container">
+<div class="content_container pt-23!">
   <h1 class="heading">About Us</h1>
   <p class="mb-5">
     At Ratan Bandhej, we celebrate the vibrant heritage and artistry of traditional Indian textiles.
@@ -42,5 +42,5 @@
     style and passion.
   </p>
   Warm regards,
-  <h1 class={"highlight mt-2 text-5xl font-semibold "}>Ratan Bandhej</h1>
+  <h1 class={"heading"}>Ratan Bandhej</h1>
 </div>

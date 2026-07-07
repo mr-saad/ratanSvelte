@@ -4,7 +4,7 @@
   <link rel="canonical" href="/privacy-policy" />
 </svelte:head>
 
-<div class="content_container">
+<div class="content_container pt-23!">
   <h1 class="heading">Privacy Policy</h1>
   <p class="mb-2">Last updated: October 25, 2024</p>
   <p>

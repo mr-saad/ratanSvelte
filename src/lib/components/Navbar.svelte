@@ -1,15 +1,14 @@
 <script lang="ts">
   import Links from "./Links.svelte"
   import CartLink from "./CartLink.svelte"
+  import { cn } from "tailwind-variants"
 
   let navOpen = $state(false)
   const handleNavOpen = () => (navOpen = !navOpen)
   const onClose = () => (navOpen = false)
 </script>
 
-<nav
-  class={`nav fixed top-0 z-3 w-full border-b border-white/10 bg-[#111]/90 px-5 py-2 shadow-xl backdrop-blur-[2px] select-none md:text-base`}
->
+<nav class={`nav fixed top-0 z-3 w-full  bg-rose-50/80 px-5 py-3 backdrop-blur-lg select-none`}>
   <div class="mx-auto grid max-w-7xl grid-cols-[1fr_2fr_1fr] items-center">
     <!-- menu toggler -->
     <button
@@ -22,15 +21,21 @@
         if (e.key === "Enter") handleNavOpen()
       }}
     >
-      <span class={`line1 h-0.5 w-6.5 origin-center rounded-md bg-white`}></span>
-      <span class={`line2 h-0.5 w-6.5 origin-center rounded-md bg-white`}></span>
+      <span class={cn(`h-0.5 w-6.5 origin-left rounded-md bg-black`, navOpen && "rotate-45")}
+      ></span>
+      <span
+        class={cn(
+          `h-0.5 w-6.5 origin-left rounded-md bg-black`,
+          navOpen && "translate-y-2 -rotate-45"
+        )}
+      ></span>
     </button>
 
     <a
       aria-label="Home"
       title="Ratan Bandhej"
       href="/"
-      class={"w-max justify-self-center text-[2.2rem] font-semibold text-white md:justify-self-start "}
+      class={"w-max justify-self-center font-serif text-3xl  text-black md:justify-self-start "}
     >
       Ratan Bandhej
     </a>

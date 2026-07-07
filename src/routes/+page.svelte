@@ -23,12 +23,12 @@
     alt={"Ratan Bandhej Cover Image"}
   />
   <div class="mx-auto grow px-5 text-white lg:max-w-7xl">
-    <h1 class={"text-7xl font-extrabold [text-shadow:0_0_10px_rgba(0,0,0,0.5)] "}>Ratan Bandhej</h1>
-    <p class="text-2xl">One Place For All Your Bandhani Needs</p>
+    <h1 class={"font-serif text-7xl"}>Ratan Bandhej</h1>
+    <p class="text-2xl leading-none">One Place For All Your Bandhani Needs</p>
   </div>
 </header>
-<div class="content_container">
-  <h1 class="heading text-4xl!">Fresh Crafts</h1>
+<div class="content_container mt-5">
+  <h1 class="heading mb-2 text-4xl">Fresh Crafts</h1>
   <Carousel products={data.home.newArrivals} />
 </div>
 <div class="content_container">

@@ -1,11 +1,14 @@
-<footer class="mt-20 border-t border-white/10 bg-[#111] p-5 text-white/60">
-  <div class="mx-auto max-w-7xl">
+<footer class="mt-20 border-t border-white/10 bg-[#111] text-white/60">
+  <div class="mx-auto max-w-7xl p-5">
+    <h2 class="font-serif text-4xl">
+      Ratan Bandhej <br />Unfold the Art of <span class="text-rose-700 italic">Bandhani</span>
+    </h2>
     <div class="my-5 grid items-center gap-4 md:grid-cols-3 md:gap-10">
       <p class="col-span-2">
         Stay connected with us through our social media channels to receive the latest updates and
         news.
       </p>
-      <div class="flex gap-10">
+      <div class="flex justify-end gap-10">
         <a
           rel="noreferrer"
           title="Facebook"

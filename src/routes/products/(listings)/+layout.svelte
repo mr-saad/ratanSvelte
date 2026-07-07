@@ -5,7 +5,7 @@
   const { data, children }: LayoutProps = $props()
 </script>
 
-<div class="content_container grid gap-5 md:grid-cols-[20rem_auto]">
+<div class="content_container grid gap-5 pt-23! md:grid-cols-[20rem_auto]">
   <FilterBtns categories={data.categories} />
   <main>
     {@render children()}

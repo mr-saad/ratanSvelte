@@ -11,30 +11,31 @@
   import Sheet from "./ui/sheet/sheet.svelte"
   import ShoppingCart from "@lucide/svelte/icons/shopping-cart"
   import Trash from "@lucide/svelte/icons/trash"
+  import { removeFromCart } from "$lib/utils/cart/removeFromCart"
 
   let cart = $derived(auth.value.cart)
 </script>
 
 <Sheet>
   <SheetTrigger class="relative cursor-pointer">
-    <ShoppingCart title="Shopping Cart" size={22} color="#fff" role="button" />
+    <ShoppingCart title="Shopping Cart" size={22} color="#000" role="button" />
     {#if cart.length > 0}
       <span
-        class="absolute -top-3 -right-3 flex h-5 w-5 items-center justify-center rounded-full bg-rose-700 text-white"
+        class="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-rose-700 text-sm text-white"
         >{cart.length}</span
       >
     {/if}
   </SheetTrigger>
   <SheetContent class="border-black/10 bg-white">
     <SheetHeader>
-      <SheetTitle class="text-xl">Cart</SheetTitle>
+      <SheetTitle class="heading">Cart</SheetTitle>
     </SheetHeader>
     <div class="grid gap-4 overflow-y-auto px-5">
       {#if cart.length > 0}
         {#each cart as prod}
-          <SheetClose class="flex gap-2">
-            <a href={`/products/${prod.type}/${prod.slug}`} class="flex gap-2">
-              <div class="flex gap-2">
+          <div class="flex justify-between gap-2">
+            <SheetClose class="flex gap-2 text-start">
+              <a href={`/products/${prod.type}/${prod.slug}`} class="flex gap-2">
                 <img
                   src={`${prod.image.url}?w=100&auto=format`}
                   width={50}
@@ -42,21 +43,26 @@
                   class="aspect-square h-full object-cover"
                   alt={prod.title}
                 />
-                <strong class="line-clamp-2 text-start">{prod.title}</strong>
-              </div>
-              <Trash
-                size={17}
-                class="shrink-0 text-red-600"
-                title="Remove from cart"
-                role="button"
-              />
-            </a>
-          </SheetClose>
+                <span class="line-clamp-2 font-serif">{prod.title}</span>
+              </a>
+            </SheetClose>
+            <Trash
+              tabindex={0}
+              onclick={() => removeFromCart(prod)}
+              onkeydown={(e) => {
+                if (e.key === "Enter" || e.key === " ") removeFromCart(prod)
+              }}
+              size={17}
+              class="shrink-0 cursor-pointer text-red-600"
+              title="Remove from cart"
+              role="button"
+            />
+          </div>
         {/each}
       {/if}
     </div>
     <SheetFooter>
-      <SheetClose class="">
+      <SheetClose>
         <Button variant="outline" class="w-full">Close</Button>
       </SheetClose>
       {#if cart.length > 0}
