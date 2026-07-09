@@ -3,6 +3,7 @@ import { auth } from "$lib/store/auth.svelte"
 
 export async function addToCart({ _id, title, slug, type, images }: any) {
   if (!auth.value.status) return goto("/sign-in")
+
   auth.value.cart.push({ _id, title, slug, type, image: { url: images[0] } })
   try {
     await fetch("/api/cart/add", {

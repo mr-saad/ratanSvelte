@@ -4,30 +4,14 @@
 @import "@fontsource-variable/inter";
 @import "shadcn-svelte/tailwind.css";
 
-@layer base {
-  html {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-    scrollbar-gutter: stable;
-
-    --swiper-navigation-color: #fff;
-    --swiper-theme-color: #111;
-    @apply dark:[--swiper-theme-color:#fff];
-    --swiper-scrollbar-bg-color: rgb(255 255 255 / 0.1);
-    --swiper-scrollbar-drag-bg-color: #fff;
-    --swiper-pagination-color: #111;
-    @apply dark:[--swiper-pagination-color:#fff];
-    --swiper-pagination-bottom: -2rem;
-    --swiper-pagination-top: unset;
-    @apply font-sans;
-  }
-}
-
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
+  --swiper-theme-color: #000;
+  --swiper-pagination-color: #000;
+  --swiper-pagination-bottom: -2rem;
+  --swiper-pagination-top: unset;
+
   --radius: 0.625rem;
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
@@ -35,7 +19,7 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
+  --primary: oklch(0.225 0 0);
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -63,6 +47,10 @@
 }
 
 .dark {
+  --swiper-theme-color: #fff;
+  --swiper-pagination-color: #fff;
+  --swiper-pagination-bullet-inactive-color: rgba(255 255 255 / 0.6);
+
   --background: oklch(0.145 0 0);
   --foreground: oklch(0.985 0 0);
   --card: oklch(0.205 0 0);
@@ -96,12 +84,39 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
-.dark .swiper-pagination-bullet {
-  --swiper-pagination-bullet-inactive-color: rgba(255, 255, 255, 0.5);
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+}
+
+html {
+  @apply font-sans;
+
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  scrollbar-gutter: stable;
 }
 
 body {
-  @apply bg-rose-50 text-stone-500 transition-colors md:text-base dark:bg-[#111] dark:text-white/60;
+  @apply bg-rose-50 text-stone-500 transition-colors md:text-base dark:bg-[#120005] dark:text-white/60;
 }
 
 .content_container {
@@ -114,7 +129,7 @@ body {
 
 /*custom utilities*/
 .card {
-  @apply bg-white;
+  @apply bg-white dark:bg-[#1c0008];
 }
 .heading {
   @apply font-serif text-3xl text-black dark:text-white;

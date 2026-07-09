@@ -6,10 +6,13 @@
   const activeCategory = $derived(decodeURIComponent(page.url.pathname.split("/")[2] || ""))
 </script>
 
-<aside class="flex flex-col gap-2 self-start bg-white p-5">
+<aside class="card flex flex-col gap-2 self-start p-5">
   <a
     href={`/products`}
-    class={cn("border-b border-transparent transition", !activeCategory && "border-black/20")}
+    class={cn(
+      "border-b border-transparent transition",
+      !activeCategory && "border-black/20 dark:border-white/20"
+    )}
   >
     All Products
   </a>
@@ -18,7 +21,7 @@
       href={`/products/${category}`}
       class={cn(
         "border-b border-transparent transition",
-        activeCategory === category && "border-black/20"
+        activeCategory === category && "border-black/20 dark:border-white/20"
       )}
     >
       {category}

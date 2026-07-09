@@ -23,11 +23,7 @@
 </script>
 
 {#if auth.value.loading}{:else if isInCart}
-  <Button
-    variant="destructive"
-    onclick={handleRemoveFromCart}
-    class="btn mt-4 border-red-700! bg-red-700! text-white! hover:bg-transparent! hover:text-red-700!"
-  >
+  <Button variant="destructive" class="mt-4" onclick={handleRemoveFromCart}>
     <span class="flex items-center justify-center gap-1">
       <svg
         xmlns="http://www.w3.org/2000/svg"
@@ -50,7 +46,7 @@
     </span>
   </Button>
 {:else}
-  <Button onclick={handleAddToCart} class="btn mt-4">
+  <Button onclick={handleAddToCart} class=" mt-4">
     <span class="flex items-center justify-center gap-1">
       <svg
         xmlns="http://www.w3.org/2000/svg"

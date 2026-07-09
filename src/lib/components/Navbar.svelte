@@ -2,14 +2,15 @@
   import Links from "./Links.svelte"
   import CartLink from "./CartLink.svelte"
   import { cn } from "tailwind-variants"
+  import ThemeToggle from "./ThemeToggle.svelte"
 
   let navOpen = $state(false)
   const handleNavOpen = () => (navOpen = !navOpen)
   const onClose = () => (navOpen = false)
 </script>
 
-<nav class={`nav fixed top-0 z-3 w-full  bg-rose-50/80 px-5 py-3 backdrop-blur-lg select-none`}>
-  <div class="mx-auto grid max-w-7xl grid-cols-[1fr_2fr_1fr] items-center">
+<nav class={`nav fixed top-0 z-3 w-full  bg-rose-50/80  py-3 backdrop-blur-lg select-none`}>
+  <div class="mx-auto grid max-w-7xl grid-cols-[1fr_2fr_1fr] items-center px-5">
     <!-- menu toggler -->
     <button
       title="Menu"
@@ -43,9 +44,9 @@
     <Links {navOpen} {onClose} />
 
     <div class="flex items-center gap-4 justify-self-end">
-      <!-- <div class="hidden text-white md:block">
+      <!-- <div class="hidden text-white md:block"> -->
       <ThemeToggle />
-    </div> -->
+      <!-- </div> -->
       <CartLink />
       <div class="hidden md:block">
         <!-- <AccountLink /> -->

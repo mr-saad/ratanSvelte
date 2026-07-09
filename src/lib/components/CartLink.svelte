@@ -1,7 +1,6 @@
 <script lang="ts">
   import { auth } from "$lib/store/auth.svelte"
-  import { onMount } from "svelte"
-  import Button from "./ui/button/button.svelte"
+  import Button, { buttonVariants } from "./ui/button/button.svelte"
   import SheetClose from "./ui/sheet/sheet-close.svelte"
   import SheetContent from "./ui/sheet/sheet-content.svelte"
   import SheetFooter from "./ui/sheet/sheet-footer.svelte"
@@ -26,7 +25,7 @@
       >
     {/if}
   </SheetTrigger>
-  <SheetContent class="border-black/10 bg-white">
+  <SheetContent class="border-black/10 bg-white dark:bg-black">
     <SheetHeader>
       <SheetTitle class="heading">Cart</SheetTitle>
     </SheetHeader>
@@ -34,8 +33,8 @@
       {#if cart.length > 0}
         {#each cart as prod}
           <div class="flex justify-between gap-2">
-            <SheetClose class="flex gap-2 text-start">
-              <a href={`/products/${prod.type}/${prod.slug}`} class="flex gap-2">
+            <SheetClose class="text-start">
+              <a href={`/products/${prod.type}/${prod.slug}`} class="flex items-start gap-2">
                 <img
                   src={`${prod.image.url}?w=100&auto=format`}
                   width={50}
@@ -43,7 +42,7 @@
                   class="aspect-square h-full object-cover"
                   alt={prod.title}
                 />
-                <span class="line-clamp-2 font-serif">{prod.title}</span>
+                <span class="line-clamp-2">{prod.title}</span>
               </a>
             </SheetClose>
             <Trash
@@ -62,11 +61,13 @@
       {/if}
     </div>
     <SheetFooter>
-      <SheetClose>
-        <Button variant="outline" class="w-full">Close</Button>
-      </SheetClose>
+      <SheetClose class={buttonVariants({ variant: "destructive" })}>Close</SheetClose>
       {#if cart.length > 0}
-        <Button>Checkout</Button>
+        <SheetClose>
+          <a href="/checkout" class={`w-full ${buttonVariants({ variant: "default" })}`}>
+            Checkout
+          </a>
+        </SheetClose>
       {/if}
     </SheetFooter>
   </SheetContent>

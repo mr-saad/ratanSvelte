@@ -4,11 +4,13 @@
   import Footer from "$lib/components/Footer.svelte"
   import "./app.css"
   import { auth, emptyAuth } from "$lib/store/auth.svelte"
+  import { theme } from "$lib/store/theme.svelte"
 
   const { children } = $props()
 
   onMount(() => {
-    const getAuth = async () => {
+    theme.value = document.documentElement.classList.contains("dark") ? "dark" : "light"
+    const fetchAuth = async () => {
       try {
         const res = await fetch("/api/getAuth")
         const data = await res.json()
@@ -20,7 +22,7 @@
         console.error(err)
       }
     }
-    getAuth()
+    fetchAuth()
   })
 </script>
 

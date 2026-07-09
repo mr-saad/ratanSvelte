@@ -1,20 +1,17 @@
 <script>
-  import { browser } from "$app/environment"
-
-  let theme = $state("light")
-  if (browser) theme = localStorage.getItem("ratanTheme") || "light"
-  const toggleTheme = () => {
-    theme = theme === "dark" ? "light" : "dark"
-    localStorage.setItem("ratanTheme", theme)
-  }
+  import { theme, toggleTheme } from "$lib/store/theme.svelte"
 </script>
 
-<!-- onKeyUp={(e) => {
-        e.preventDefault()
-        if (e.key === "Enter" || e.key === "Space") toggleTheme()
-      }} -->
-<button tabIndex={0} onclick={() => toggleTheme()} class="transition md:inline">
-  {#if theme === "dark"}
+<button
+  onkeyup={(e) => {
+    e.preventDefault()
+    if (e.key === "Enter" || e.key === " ") toggleTheme()
+  }}
+  tabIndex={0}
+  onclick={() => toggleTheme()}
+  class="transition md:inline"
+>
+  {#if theme.value === "dark"}
     <svg
       class="cursor-pointer align-middle md:inline"
       xmlns="http://www.w3.org/2000/svg"
@@ -22,7 +19,7 @@
       height="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
+      stroke="black"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -45,7 +42,7 @@
       height="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="currentColor"
+      stroke="black"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"

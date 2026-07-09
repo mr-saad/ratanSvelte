@@ -6,7 +6,7 @@
 </script>
 
 <svelte:head>
-  <title>Home | Ratan Bandhej</title>
+  <title>Home - Ratan Bandhej</title>
 </svelte:head>
 
 <header

@@ -2,7 +2,7 @@
   import { goto } from "$app/navigation"
   import { auth } from "$lib/store/auth.svelte"
 
-  let details = $derived({ username: auth.username, email: auth.email })
+  let details = $derived({ username: auth.value.username, email: auth.value.email })
 
   async function onclick() {
     const conf = confirm("You'll be Signed Out. Sure?")
