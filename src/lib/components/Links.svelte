@@ -21,44 +21,34 @@
   const pathname = $derived(page.url.pathname)
 </script>
 
-<button
-  tabindex={-1}
-  onclick={(e) => {
-    if (e.target === e.currentTarget) onClose()
-  }}
+<ul
   class={cn(
-    "fixed top-15 left-0 col-span-3 row-start-2 h-[85vh] w-full items-start text-start md:static  md:col-span-1 md:col-start-2  md:row-start-1 md:h-auto",
+    "col-span-3 row-start-2 flex-col pt-5 text-black capitalize md:col-span-1 md:col-start-2 md:row-start-1 md:flex-row md:justify-center md:pt-0 ",
     navOpen ? "flex" : "hidden md:flex"
   )}
 >
-  <ul
-    class={cn(
-      "flex w-full flex-col bg-rose-50/95 px-5 py-2 text-black capitalize md:flex-row md:justify-center md:bg-transparent"
-    )}
-  >
+  <li class="">
+    <a
+      onclick={onClose}
+      class={`block pb-2 transition hover:opacity-100 focus-visible:opacity-100  md:px-2 md:py-0 ${
+        pathname === "/" ? "opacity-100" : "opacity-60"
+      }`}
+      href={"/"}
+    >
+      Home
+    </a>
+  </li>
+  {#each links as link}
     <li class="">
       <a
         onclick={onClose}
-        class={`block pb-2 transition hover:opacity-100 focus-visible:opacity-100  md:px-2 md:py-0 ${
-          pathname === "/" ? "opacity-100" : "opacity-60"
+        class={`block py-2 transition hover:opacity-100 focus-visible:opacity-100  md:px-2 md:py-0 ${
+          pathname.startsWith(link.url) ? "opacity-100" : "opacity-60"
         }`}
-        href={"/"}
+        href={link.url}
       >
-        Home
+        {link.text}
       </a>
     </li>
-    {#each links as link}
-      <li class="">
-        <a
-          onclick={onClose}
-          class={`block py-2 transition hover:opacity-100 focus-visible:opacity-100  md:px-2 md:py-0 ${
-            pathname.startsWith(link.url) ? "opacity-100" : "opacity-60"
-          }`}
-          href={link.url}
-        >
-          {link.text}
-        </a>
-      </li>
-    {/each}
-  </ul>
-</button>
+  {/each}
+</ul>
