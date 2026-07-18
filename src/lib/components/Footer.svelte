@@ -1,4 +1,4 @@
-<footer class="mt-20 border-t border-white/10 bg-[#111] text-white/60">
+<footer class="mt-20 border-t border-white/10 bg-[#120005] text-white/60">
   <div class="mx-auto max-w-7xl p-5">
     <h2 class="font-serif text-4xl">
       Ratan Bandhej <br />Unfold the Art of <span class="text-rose-700 italic">Bandhani</span>

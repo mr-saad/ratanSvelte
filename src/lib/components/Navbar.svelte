@@ -9,7 +9,9 @@
   const onClose = () => (navOpen = false)
 </script>
 
-<nav class={`nav fixed top-0 z-3 w-full  bg-rose-50/80  py-3 backdrop-blur-lg select-none`}>
+<nav
+  class={`nav fixed top-0 z-3 w-full border-b border-black/3 bg-rose-50/80 py-3 backdrop-blur-lg select-none dark:border-white/10 dark:bg-[#120005]/70`}
+>
   <div class="mx-auto grid max-w-7xl grid-cols-[1fr_2fr_1fr] items-center px-5">
     <!-- menu toggler -->
     <button
@@ -22,11 +24,15 @@
         if (e.key === "Enter") handleNavOpen()
       }}
     >
-      <span class={cn(`h-0.5 w-6.5 origin-left rounded-md bg-black`, navOpen && "rotate-45")}
+      <span
+        class={cn(
+          `h-0.5 w-6.5 origin-left rounded-md bg-black dark:bg-white`,
+          navOpen && "rotate-45"
+        )}
       ></span>
       <span
         class={cn(
-          `h-0.5 w-6.5 origin-left rounded-md bg-black`,
+          `h-0.5 w-6.5 origin-left rounded-md bg-black dark:bg-white`,
           navOpen && "translate-y-2 -rotate-45"
         )}
       ></span>
@@ -36,7 +42,7 @@
       aria-label="Home"
       title="Ratan Bandhej"
       href="/"
-      class={"w-max justify-self-center font-serif text-3xl  text-black md:justify-self-start "}
+      class={"w-max justify-self-center font-serif text-3xl  text-black md:justify-self-start dark:text-white "}
     >
       Ratan Bandhej
     </a>
@@ -44,9 +50,7 @@
     <Links {navOpen} {onClose} />
 
     <div class="flex items-center gap-4 justify-self-end">
-      <!-- <div class="hidden text-white md:block"> -->
-      <ThemeToggle />
-      <!-- </div> -->
+      <div class="hidden md:block"><ThemeToggle /></div>
       <CartLink />
       <div class="hidden md:block">
         <!-- <AccountLink /> -->

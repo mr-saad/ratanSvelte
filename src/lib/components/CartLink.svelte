@@ -17,7 +17,13 @@
 
 <Sheet>
   <SheetTrigger class="relative cursor-pointer">
-    <ShoppingCart title="Shopping Cart" size={22} color="#000" role="button" />
+    <ShoppingCart
+      title="Shopping Cart"
+      size={22}
+      color="currentColor"
+      class="text-black dark:text-white"
+      role="button"
+    />
     {#if cart.length > 0}
       <span
         class="absolute -top-2 -right-2 flex h-4 w-4 items-center justify-center rounded-full bg-rose-700 text-sm text-white"
@@ -25,7 +31,7 @@
       >
     {/if}
   </SheetTrigger>
-  <SheetContent class="border-black/10 bg-white dark:bg-black">
+  <SheetContent class="border-black/10 bg-white dark:border-white/10 dark:bg-black">
     <SheetHeader>
       <SheetTitle class="heading">Cart</SheetTitle>
     </SheetHeader>

@@ -1,3 +1,5 @@
+// import { browser } from "$app/environment"
+
 export type CartItem = {
   _id: string
   title: string
@@ -25,3 +27,10 @@ export const emptyAuth = {
 }
 
 export const auth = $state<{ value: Auth }>({ value: emptyAuth })
+
+// if (browser)
+//   fetch("/api/getAuth")
+//     .then((r) => r.json())
+//     .then((d) => {
+//       auth.value = d
+//     })

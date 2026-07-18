@@ -9,7 +9,7 @@
       variants: {
         variant: {
           default:
-            "bg-black dark:bg-white dark:text-black text-white hover:bg-black/80 dark:hover:bg-[#eee] dark:focus-visible:ring-white/50",
+            "bg-primary text-white hover:bg-primary/80 focus-visible:bg-primary/80 focus-visible:ring-primary/50",
           outline:
             "border-border bg-background hover:bg-muted hover:text-foreground dark:bg-input/30 dark:border-input dark:hover:bg-input/50 aria-expanded:bg-muted aria-expanded:text-foreground shadow-xs",
           secondary:

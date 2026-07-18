@@ -9,19 +9,19 @@
 
   let embla = $state<EmblaCarouselType | undefined>(undefined)
   let slideCount = $state<number[]>([])
-  let selectedSnap = $state(0)
+  let selectedSlide = $state(0)
 
   const setupSlideCount = (api: EmblaCarouselType) => (slideCount = api.scrollSnapList())
-  const setActiveSnap = (api: EmblaCarouselType) => (selectedSnap = api.selectedScrollSnap())
+  const setActiveSlide = (api: EmblaCarouselType) => (selectedSlide = api.selectedScrollSnap())
   const navigateTo = (index: number) => embla?.scrollTo(index)
 
   const onInit = (event: CustomEvent<EmblaCarouselType>) => {
     embla = event.detail
     setupSlideCount(embla)
-    setActiveSnap(embla)
+    setActiveSlide(embla)
     embla.on("reInit", setupSlideCount)
-    embla.on("reInit", setActiveSnap)
-    embla.on("select", setActiveSnap)
+    embla.on("reInit", setActiveSlide)
+    embla.on("select", setActiveSlide)
   }
 </script>
 
@@ -73,8 +73,8 @@
       <button
         title={`Slide ${index + 1}`}
         class={cn(
-          "embla__dot h-4 w-4 cursor-pointer rounded-full outline-2 outline-black/30 focus-visible:outline-black",
-          index === selectedSnap && "outline-black"
+          "embla__dot outline-primary/30 focus-visible:outline-primary h-4 w-4 cursor-pointer rounded-full  outline-2",
+          index === selectedSlide && "outline-primary"
         )}
         onclick={() => navigateTo(index)}
       ></button>

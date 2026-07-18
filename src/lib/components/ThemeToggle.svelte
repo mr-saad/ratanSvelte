@@ -9,17 +9,17 @@
   }}
   tabIndex={0}
   onclick={() => toggleTheme()}
-  class="transition md:inline"
+  class="w-full transition"
 >
   {#if theme.value === "dark"}
     <svg
-      class="cursor-pointer align-middle md:inline"
+      class="cursor-pointer align-middle md:inline dark:text-white"
       xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="20"
       viewBox="0 0 24 24"
       fill="none"
-      stroke="black"
+      stroke="currentColor"
       stroke-width="2"
       stroke-linecap="round"
       stroke-linejoin="round"
@@ -36,7 +36,7 @@
     </svg>
   {:else}
     <svg
-      class="cursor-pointer align-middle md:inline"
+      class="cursor-pointer align-middle md:inline dark:text-white"
       xmlns="http://www.w3.org/2000/svg"
       width="20"
       height="20"

@@ -1,6 +1,7 @@
 <script lang="ts">
   import { page } from "$app/state"
   import { cn } from "$lib/utils"
+  import ThemeToggle from "./ThemeToggle.svelte"
 
   const links = [
     {
@@ -23,7 +24,7 @@
 
 <ul
   class={cn(
-    "col-span-3 row-start-2 flex-col pt-5 text-black capitalize md:col-span-1 md:col-start-2 md:row-start-1 md:flex-row md:justify-center md:pt-0 ",
+    "col-span-3 row-start-2 flex-col pt-5 text-black capitalize md:col-span-1 md:col-start-2 md:row-start-1 md:flex-row md:justify-center md:pt-0 dark:text-white ",
     navOpen ? "flex" : "hidden md:flex"
   )}
 >
@@ -51,4 +52,5 @@
       </a>
     </li>
   {/each}
+  <li class="pt-2 md:hidden"><ThemeToggle /></li>
 </ul>
