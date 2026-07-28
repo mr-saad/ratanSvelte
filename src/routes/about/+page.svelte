@@ -38,7 +38,7 @@
   <section class="mb-5 flex flex-col justify-between gap-2 md:flex-row md:items-center">
     <div class="shrink-0">
       <span class="text-sm font-medium tracking-widest uppercase"> Est. 2019 • Bhuj, Gujarat </span>
-      <h1 class="leading-tighter font-serif text-4xl">
+      <h1 class="font-serif text-4xl leading-none tracking-tighter">
         Weaving stories, <br />
         <span class="highlight italic">one knot at a time.</span>
       </h1>
@@ -56,10 +56,11 @@
       <div class="overflow-hidden rounded-2xl bg-rose-200 md:col-span-8">
         <img
           fetchpriority="high"
-          loading="eager"
+          loading="lazy"
+          decoding="async"
           width={400}
           height={400}
-          src="/images/working.jpg"
+          src="https://cdn.shopify.com/s/files/1/2447/5025/files/DSC08563w_1024x1024.jpg?v=1547829837"
           alt="Artisan working"
           class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
         />
@@ -68,12 +69,13 @@
       <div class="grid grid-rows-2 gap-5 md:col-span-4">
         <div class="overflow-hidden rounded-2xl bg-rose-200">
           <img
+            decoding="async"
             loading="lazy"
             width={400}
             height={400}
-            src="/images/fabric.jpg"
+            src="https://made-in.org/media/pages/craft-techniques/bandhani-and-kalamkari/82a4bf4c47-1644429701/02-bandhani23-640x.jpg"
             alt="Fabric detail"
-            class="w-full object-cover"
+            class="h-full w-full object-cover"
           />
         </div>
         <div

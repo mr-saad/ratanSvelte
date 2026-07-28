@@ -7,7 +7,7 @@
 </script>
 
 <div class="">
-  <h1 class="highlight mb-3 text-2xl font-semibold capitalize md:mt-0">
+  <h1 class="highlight mb-3 font-serif text-2xl leading-none tracking-tighter capitalize md:mt-0">
     {title}
   </h1>
   <span>

@@ -43,7 +43,10 @@
         >
           <div class="card grid items-center md:grid-cols-2">
             <div class="p-4">
-              <h2 title={prod.title} class="highlight line-clamp-2 font-serif text-2xl capitalize">
+              <h2
+                title={prod.title}
+                class="highlight line-clamp-2 pb-0.5 font-serif text-2xl leading-none tracking-tighter capitalize"
+              >
                 {prod.title}
               </h2>
               <p title={prod.description} class="mb-2 line-clamp-2">{prod.description}</p>

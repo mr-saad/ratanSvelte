@@ -18,6 +18,7 @@ export async function GET({ cookies }) {
   		}
 		}`
     const user = await sanity.fetch(q, { userId: ver.payload.userId })
+
     if (user) {
       auth = {
         userId: user._id,

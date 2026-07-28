@@ -99,8 +99,7 @@ html {
   @apply font-sans;
 
   -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-rendering: optimizeLegibility;
+
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   scrollbar-gutter: stable;
 }
@@ -119,11 +118,17 @@ body {
 
 /*custom utilities*/
 .card {
-  @apply bg-white dark:bg-white/5;
+  @apply bg-white dark:bg-white/10;
 }
 .heading {
   @apply font-serif text-3xl text-black dark:text-white;
 }
 .highlight {
   @apply text-black dark:text-white;
+}
+.input {
+  @apply border-primary/50 focus-visible:border-primary w-full border-b text-black transition outline-none dark:text-white;
+}
+.select {
+  @apply focus-visible:border-rose-700 focus-visible:outline-rose-700;
 }

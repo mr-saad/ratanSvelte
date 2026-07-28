@@ -26,13 +26,13 @@
     >
       <span
         class={cn(
-          `h-0.5 w-6.5 origin-left rounded-md bg-black dark:bg-white`,
+          `h-0.5 w-6.5 origin-left rounded-md bg-black transition dark:bg-white`,
           navOpen && "rotate-45"
         )}
       ></span>
       <span
         class={cn(
-          `h-0.5 w-6.5 origin-left rounded-md bg-black dark:bg-white`,
+          `h-0.5 w-6.5 origin-left rounded-md bg-black transition dark:bg-white`,
           navOpen && "translate-y-2 -rotate-45"
         )}
       ></span>
@@ -42,7 +42,7 @@
       aria-label="Home"
       title="Ratan Bandhej"
       href="/"
-      class={"w-max justify-self-center font-serif text-3xl  text-black md:justify-self-start dark:text-white "}
+      class={"w-max justify-self-center font-serif text-3xl tracking-tighter  text-black md:justify-self-start dark:text-white"}
     >
       Ratan Bandhej
     </a>

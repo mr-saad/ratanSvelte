@@ -57,7 +57,7 @@
     onemblaInit={onThumbInit}
     use:useEmblaCarousel
   >
-    <div class="embla-thumbs__container flex gap-2">
+    <div class="embla-thumbs__container flex">
       {#each images as img, index}
         <div
           tabindex="0"

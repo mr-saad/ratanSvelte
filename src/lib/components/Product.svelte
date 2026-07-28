@@ -18,7 +18,11 @@
     <div
       class="absolute inset-0 flex flex-col justify-end bg-linear-to-t from-[#111]/80 to-transparent p-4 opacity-0 transition group-focus-within:opacity-100 group-hover:opacity-100"
     >
-      <h2 class="line-clamp-2 text-base text-white capitalize md:line-clamp-none">{title}</h2>
+      <h2
+        class="line-clamp-2 pb-0.5 text-base leading-none tracking-tighter text-white capitalize md:line-clamp-none"
+      >
+        {title}
+      </h2>
     </div>
   </a>
 </div>

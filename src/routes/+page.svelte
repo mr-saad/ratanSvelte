@@ -23,8 +23,8 @@
     alt={"Ratan Bandhej Cover Image"}
   />
   <div class="mx-auto grow px-5 text-white lg:max-w-7xl">
-    <h1 class={"font-serif text-7xl"}>Ratan Bandhej</h1>
-    <p class="text-2xl leading-none">One Place For All Your Bandhani Needs</p>
+    <h1 class={"font-serif text-7xl leading-none tracking-tighter"}>Ratan Bandhej</h1>
+    <p class="text-2xl leading-none tracking-tighter">One Place For All Your Bandhani Needs</p>
   </div>
 </header>
 <div class="content_container mt-5">
