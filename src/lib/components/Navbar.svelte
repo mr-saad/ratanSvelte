@@ -5,12 +5,25 @@
   import ThemeToggle from "./ThemeToggle.svelte"
 
   let navOpen = $state(false)
+  let lastScroll = $state(0)
+  let shouldFloat = $state(true)
   const handleNavOpen = () => (navOpen = !navOpen)
   const onClose = () => (navOpen = false)
+
+  function handleScroll() {
+    const currentScroll = scrollY
+    shouldFloat = currentScroll < lastScroll
+    lastScroll = currentScroll
+  }
 </script>
 
+<svelte:window onscroll={handleScroll} />
+
 <nav
-  class={`nav fixed top-0 z-3 w-full border-b border-black/3 bg-rose-50/80 py-3 backdrop-blur-lg select-none dark:border-white/10 dark:bg-[#120005]/70`}
+  class={cn(
+    "nav fixed z-3 w-full border-b border-black/3 bg-rose-50/80 py-3 backdrop-blur-lg transition select-none dark:border-white/10 dark:bg-[#120005]/70",
+    shouldFloat ? "translate-y-0" : "-translate-y-full "
+  )}
 >
   <div class="mx-auto grid max-w-7xl grid-cols-[1fr_2fr_1fr] items-center px-5">
     <!-- menu toggler -->

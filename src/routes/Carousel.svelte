@@ -1,5 +1,5 @@
 <script lang="ts">
-  import Button from "$lib/components/ui/button/button.svelte"
+  import Button, { buttonVariants } from "$lib/components/ui/button/button.svelte"
   import useEmblaCarousel from "embla-carousel-svelte"
   import { type EmblaCarouselType } from "embla-carousel"
   import Autoplay from "embla-carousel-autoplay"
@@ -50,8 +50,9 @@
                 {prod.title}
               </h2>
               <p title={prod.description} class="mb-2 line-clamp-2">{prod.description}</p>
-              <Button role="a" href={`/products/${prod.type}/${prod.slug}`} class=""
-                >View More</Button
+              <a
+                href={`/products/${prod.type}/${prod.slug}`}
+                class={buttonVariants({ variant: "default" })}>View More</a
               >
             </div>
             {#if prod.image}

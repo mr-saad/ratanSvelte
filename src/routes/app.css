@@ -130,5 +130,5 @@ body {
   @apply border-primary/50 focus-visible:border-primary w-full border-b text-black transition outline-none dark:text-white;
 }
 .select {
-  @apply focus-visible:border-rose-700 focus-visible:outline-rose-700;
+  @apply text-[#897f82] focus-visible:border-rose-700 focus-visible:outline-rose-700;
 }

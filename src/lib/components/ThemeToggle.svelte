@@ -3,6 +3,8 @@
 </script>
 
 <button
+  aria-labelledby="Toggle Theme"
+  title="Toggle Theme"
   onkeyup={(e) => {
     e.preventDefault()
     if (e.key === "Enter" || e.key === " ") toggleTheme()

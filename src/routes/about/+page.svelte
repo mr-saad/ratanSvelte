@@ -5,7 +5,6 @@
   import Gem from "@lucide/svelte/icons/gem"
   import Users from "@lucide/svelte/icons/users"
   import Leaf from "@lucide/svelte/icons/leaf"
-  import type { Component } from "svelte"
 </script>
 
 <svelte:head>
@@ -22,7 +21,7 @@
 
 {#snippet Insight({ icon, title, description }: { icon: any; title: string; description: string })}
   <div>
-    <div class="flex items-center gap-2">
+    <div class="mb-2 flex items-center gap-2">
       <div class="rounded-xl bg-rose-100 p-3 text-rose-700">
         <svelte:component this={icon} size={24} />
       </div>
@@ -75,11 +74,11 @@
             height={400}
             src="https://made-in.org/media/pages/craft-techniques/bandhani-and-kalamkari/82a4bf4c47-1644429701/02-bandhani23-640x.jpg"
             alt="Fabric detail"
-            class="h-full w-full object-cover"
+            class="h-full w-full object-cover transition-transform duration-700 hover:scale-105"
           />
         </div>
         <div
-          class="flex flex-col items-start justify-center rounded-2xl bg-rose-900 p-8 text-white"
+          class="flex flex-col items-start justify-center rounded-2xl bg-rose-900 p-8 text-white dark:bg-white/10"
         >
           <h3 class="mb-2 font-serif text-3xl">100%</h3>
           <p class="text-rose-300">Handcrafted by master artisans.</p>
@@ -112,43 +111,9 @@
     </ProductGrid>
   </section>
 </div>
-<section class="bg-rose-100 px-5 py-20 text-center dark:bg-rose-900">
+<section class="bg-rose-100 px-5 py-20 text-center dark:bg-white/10">
   <h2 class="mb-6 font-serif text-3xl">Experience the tradition.</h2>
   <Button href={"/products"}>
     View Latest Collection <ArrowRight size={18} />
   </Button>
 </section>
-
-<!--
-<h1 class="heading">About Us</h1>
-<p class="mb-5">
-  At Ratan Bandhej, we celebrate the vibrant heritage and artistry of traditional Indian textiles.
-  We are passionate about preserving and promoting the rich cultural legacy of Bandhani, a
-  centuries-old tie-dye technique originating from the colorful state of Gujarat, India.
-</p>
-<p class="mb-5">
-  Bandhani is known for its distinctive patterns created through the laborious process of tying
-  and dyeing. Our skilled artisans meticulously tie thousands of tiny knots by hand, forming
-  intricate designs on the fabric. These knots resist the dye, resulting in beautiful patterns
-  when the fabric is dyed. It is a testament to the artisans&apos; craftsmanship and attention to
-  detail.
-</p>
-<p class="mb-5">
-  We work closely with talented artisans from different regions of Gujarat, ensuring that their
-  skills are recognized and valued. By supporting fair trade practices, we strive to empower these
-  artisans, providing them with a sustainable livelihood while preserving their traditional craft.
-  Each Bandhani product you find on our website is a labor of love and a testament to the
-  artisans&apos; dedication.
-</p>
-<p class="mb-5">
-  We invite you to explore our collection and discover the intricate beauty of Bandhani. Whether
-  you are attending a special occasion, looking for a statement piece, or simply embracing the
-  elegance of Indian textiles, Bandhani offers you an exquisite range of products to choose from.
-</p>
-<p class="mb-5">
-  Thank you for joining us on this journey of celebrating art, culture, and craftsmanship. We hope
-  you enjoy exploring the vibrant world of Bandhani and find something that resonates with your
-  style and passion.
-</p>
-Warm regards,
-<h1 class={"heading"}>Ratan Bandhej</h1> -->
