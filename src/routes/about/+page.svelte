@@ -78,10 +78,10 @@
           />
         </div>
         <div
-          class="flex flex-col items-start justify-center rounded-2xl bg-rose-900 p-8 text-white dark:bg-white/10"
+          class="flex flex-col items-start justify-center rounded-2xl bg-primary p-8 text-white dark:bg-white/10"
         >
           <h3 class="mb-2 font-serif text-3xl">100%</h3>
-          <p class="text-rose-300">Handcrafted by master artisans.</p>
+          <p>Handcrafted by master artisans.</p>
         </div>
       </div>
     </div>
@@ -89,7 +89,7 @@
 
   <!-- 3. The Process / Values - Clean 3-Column Layout  -->
   <section class="mx-auto mb-16 max-w-7xl">
-    <ProductGrid class={"grid-cols-1 gap-5 xl:grid-cols-3"}>
+    <ProductGrid class={"grid-cols-1 gap-5 lg:grid-cols-3"}>
       {@render Insight({
         icon: Users,
         title: "Community First",
