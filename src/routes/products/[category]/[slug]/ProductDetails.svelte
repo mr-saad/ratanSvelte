@@ -10,12 +10,14 @@
   <h1 class="highlight mb-3 font-serif text-2xl leading-none tracking-tighter capitalize md:mt-0">
     {title}
   </h1>
-  <span>
-    <strong class="highlight text-xl">₹{price}</strong> + Shipping
-  </span>
+  <div class="flex justify-between items-center gap-2">
+    <span>
+      <strong class="highlight text-xl">₹{price}</strong> + Shipping
+    </span>
+    <CartBtn product={{ _id, images, title, slug, type, price }} />
+  </div>
   <p class="mt-2 whitespace-pre-wrap">{description}</p>
 
-  <CartBtn product={{ _id, images, title, slug, type, price }} />
   <hr class="mt-5 border-black/5 dark:border-white/5" />
   <table class="border-separate border-spacing-y-5">
     <tbody>

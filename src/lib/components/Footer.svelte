@@ -1,4 +1,16 @@
-<footer class="mt-20 border-t border-white/10 bg-[#120005] text-white/60">
+<script lang="ts">
+  import { page } from "$app/state"
+  import { cn } from "$lib/utils"
+
+  const pathname = $derived(page.url.pathname)
+</script>
+
+<footer
+  class={cn(
+    "border-t border-white/10 bg-[#120005] text-white/60",
+    pathname === "/" || pathname === "/about" ? "" : "mt-20"
+  )}
+>
   <div class="mx-auto max-w-7xl p-5">
     <h2 class="font-serif text-4xl leading-none tracking-tighter">
       <span class="text-rose-700"> Ratan Bandhej</span> <br />Unfold the Art of

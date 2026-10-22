@@ -23,8 +23,9 @@
 </script>
 
 {#if auth.value.loading}{:else if isInCart}
-  <Button variant="destructive" class="mt-4" onclick={handleRemoveFromCart}>
+  <Button variant="destructive" onclick={handleRemoveFromCart}>
     <span class="flex items-center justify-center gap-1">
+      Remove from
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -42,12 +43,13 @@
           d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
         />
       </svg>
-      Remove from Cart
+      <!-- Cart -->
     </span>
   </Button>
 {:else}
-  <Button onclick={handleAddToCart} class=" mt-4">
+  <Button onclick={handleAddToCart}>
     <span class="flex items-center justify-center gap-1">
+      Add to
       <svg
         xmlns="http://www.w3.org/2000/svg"
         width="24"
@@ -65,7 +67,8 @@
           d="M2.05 2.05h2l2.66 12.42a2 2 0 0 0 2 1.58h9.78a2 2 0 0 0 1.95-1.57l1.65-7.43H5.12"
         />
       </svg>
-      Add to Cart
+
+      <!-- Cart -->
     </span>
   </Button>
 {/if}

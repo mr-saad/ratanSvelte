@@ -59,7 +59,8 @@
               <div class=" overflow-clip md:justify-self-end">
                 <img
                   class="aspect-square h-full object-cover object-top transition duration-400 ease-in-out will-change-transform group-focus-within:scale-105 group-hover:scale-105"
-                  src={`${prod.image}?w=480&auto=format`}
+                  style={`background: url(${prod.image.lqip}) center / cover no-repeat`}
+                  src={`${prod.image.url}?w=480&auto=format`}
                   sizes="(max-width: 640px) 80vw, (max-width: 1024px) 50vw, 33vw"
                   alt={prod.title}
                   width={400}

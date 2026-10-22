@@ -6,6 +6,6 @@ const sanity = createClient({
   dataset: DATASET,
   apiVersion: API_VERSION,
   token: SANITY_TOKEN,
-  useCdn: true
+  useCdn: false
 })
 export default sanity

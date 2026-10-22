@@ -48,7 +48,7 @@
     {/if}
   </div>
   <SheetFooter>
-    <SheetClose class={buttonVariants({ variant: "destructive" })}>Close</SheetClose>
+    <!-- <SheetClose class={buttonVariants({ variant: "destructive" })}>Close</SheetClose> -->
     {#if cart.length > 0}
       <SheetClose>
         <a href="/checkout" class={`w-full ${buttonVariants({ variant: "default" })}`}>

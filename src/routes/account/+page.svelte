@@ -1,6 +1,7 @@
 <script lang="ts">
   import { goto } from "$app/navigation"
-  import { auth } from "$lib/store/auth.svelte"
+  import Button from "$lib/components/ui/button/button.svelte"
+  import { auth, emptyAuth } from "$lib/store/auth.svelte"
 
   let details = $derived({ username: auth.value.username, email: auth.value.email })
 
@@ -9,7 +10,7 @@
     if (conf) {
       const res = await (await fetch("/api/sign-out")).json()
       if (res.ok) {
-        Object.assign(auth, { email: "", status: false, userId: "", username: "", cart: [] })
+        auth.value = emptyAuth
         return goto("/sign-in")
       }
     }
@@ -20,21 +21,9 @@
   <title>Account | Ratan Bandhej Sveltekit</title>
 </svelte:head>
 
-<h1>Account</h1>
-<br />
-<p><strong>Username:</strong> {details.username}</p>
-<p><strong>E-Mail:</strong> {details.email}</p>
-<br />
-<button {onclick} type="button">Sign Out</button>
-
-<style>
-  button {
-    background: red;
-    color: white;
-    padding: 0.5rem;
-    border: none;
-    border-radius: 5px;
-    font-weight: bold;
-    cursor: pointer;
-  }
-</style>
+<div class="content_container pt-20!">
+  <h1>Account</h1>
+  <p><strong>Username:</strong> {details.username}</p>
+  <p><strong>E-Mail:</strong> {details.email}</p>
+  <Button {onclick} type="button">Sign Out</Button>
+</div>

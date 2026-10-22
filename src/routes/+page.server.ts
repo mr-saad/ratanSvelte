@@ -3,13 +3,15 @@ import sanity from "$lib/server/sanity.server"
 export const load = async () => {
   const home = await sanity.fetch(
     `{
-        "headerImage":*[_type=="headerImage"][0]{"image":image.asset->url},
+        "categories": *[_type == "product" && _id == *[_type == "product" && type == ^.type][0]._id]
+          {type, "image": images[0].asset->{url, "lqip": metadata.lqip}},
+        "headerImage":*[_type=="headerImage"][0]{"image":image.asset->{url, "lqip": metadata.lqip}},
         "newArrivals": *[_type=="product"][0..$count]{
               _id,
               title,
               description,
               type,
-              "image": images[0].asset->url,
+              "image": images[0].asset->{url, "lqip": metadata.lqip},
               price,
               "slug": slug.current
         },
@@ -20,7 +22,7 @@ export const load = async () => {
               title,
               description,
               type,
-              "image": images[0].asset->url,
+              "image": images[0].asset->{url, "lqip": metadata.lqip},
               price,
               "slug": slug.current
           }},
@@ -31,7 +33,7 @@ export const load = async () => {
               title,
               description,
               type,
-              "image": images[0].asset->url,
+              "image": images[0].asset->{url, "lqip": metadata.lqip},
               price,
               "slug": slug.current
           }},
@@ -42,7 +44,7 @@ export const load = async () => {
               title,
               description,
               type,
-              "image": images[0].asset->url,
+              "image": images[0].asset->{url, "lqip": metadata.lqip},
               price,
               "slug": slug.current
           }},
@@ -53,7 +55,7 @@ export const load = async () => {
                 title,
                 description,
                 type,
-                "image": images[0].asset->url,
+                "image": images[0].asset->{url, "lqip": metadata.lqip},
                 price,
                 "slug": slug.current
             }

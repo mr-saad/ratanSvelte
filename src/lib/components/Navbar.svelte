@@ -3,10 +3,13 @@
   import CartLink from "./CartLink.svelte"
   import { cn } from "tailwind-variants"
   import ThemeToggle from "./ThemeToggle.svelte"
+  import { onMount } from "svelte"
 
   let navOpen = $state(false)
+  let navRef = $state<HTMLElement | null>()
   let lastScroll = $state(0)
   let shouldFloat = $state(true)
+
   const handleNavOpen = () => (navOpen = !navOpen)
   const onClose = () => (navOpen = false)
 
@@ -15,11 +18,26 @@
     shouldFloat = currentScroll < lastScroll
     lastScroll = currentScroll
   }
+
+  onMount(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (navRef && !navRef.contains(e.target as Node)) {
+        onClose()
+      }
+    }
+
+    document.addEventListener("click", handleClickOutside)
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside)
+    }
+  })
 </script>
 
 <svelte:window onscroll={handleScroll} />
 
 <nav
+  bind:this={navRef}
   class={cn(
     "nav fixed z-3 w-full border-b border-black/3 bg-rose-50/80 py-3 backdrop-blur-lg transition select-none dark:border-white/10 dark:bg-[#120005]/70",
     shouldFloat ? "translate-y-0" : "-translate-y-full "

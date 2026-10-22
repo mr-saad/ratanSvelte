@@ -36,7 +36,7 @@
 <div class="content_container pt-23!">
   <section class="mb-5 flex flex-col justify-between gap-2 md:flex-row md:items-center">
     <div class="shrink-0">
-      <span class="text-sm font-medium tracking-widest uppercase"> Est. 2019 • Bhuj, Gujarat </span>
+      <!-- <span class="text-sm font-medium tracking-widest uppercase"> Est. 2019 • Bhuj, Gujarat </span> -->
       <h1 class="font-serif text-4xl leading-none tracking-tighter">
         Weaving stories, <br />
         <span class="highlight italic">one knot at a time.</span>
@@ -89,7 +89,7 @@
 
   <!-- 3. The Process / Values - Clean 3-Column Layout  -->
   <section class="mx-auto mb-16 max-w-7xl">
-    <ProductGrid class={"grid-cols-1 gap-5 lg:grid-cols-3"}>
+    <ProductGrid class={"grid-cols-1 gap-5 xl:grid-cols-3"}>
       {@render Insight({
         icon: Users,
         title: "Community First",
