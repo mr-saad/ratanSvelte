@@ -3,7 +3,7 @@
   import type { EmblaCarouselType } from "embla-carousel"
   import useEmblaCarousel from "embla-carousel-svelte"
 
-  const { images, title }: { images: string[]; title: string } = $props()
+  const { images, title }: { images: { url: string; lqip: string }[]; title: string } = $props()
   let embla = $state<EmblaCarouselType | undefined>(undefined)
   let emblaThumb = $state<EmblaCarouselType | undefined>(undefined)
   let selectedSnap = $state(0)
@@ -43,7 +43,8 @@
             fetchPriority={index === 0 ? "high" : "low"}
             loading={index === 0 ? "eager" : "lazy"}
             alt={title}
-            src={img}
+            style={`background: url(${img.lqip}) center / cover no-repeat`}
+            src={img?.url}
             width={400}
             height={400}
             class={`aspect-square w-full cursor-grab object-cover object-top select-none active:cursor-grabbing`}
@@ -74,7 +75,8 @@
             fetchPriority={index === 0 ? "high" : "low"}
             loading={index === 0 ? "eager" : "lazy"}
             alt={title}
-            src={`${img}?w=100&auto=format`}
+            style={`background: url(${img.lqip}) center / cover no-repeat`}
+            src={`${img.url}?w=100&auto=format`}
             width={80}
             height={80}
             class={`aspect-square w-full cursor-pointer object-cover object-top select-none active:cursor-grabbing`}

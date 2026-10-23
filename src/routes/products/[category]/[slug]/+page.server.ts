@@ -7,7 +7,7 @@ export const load = async ({ params }) => {
       "slug":slug.current,
       title,
       type,
-      "images":images[].asset->url,
+      "images":images[].asset->{url, "lqip": metadata.lqip},
       specs,
       description,
       colours,
@@ -21,7 +21,7 @@ export const load = async ({ params }) => {
     specs,
     description,
     "slug": slug.current,
-    "image":images[0].asset->url,
+    "image":images[0].asset->{url, "lqip": metadata.lqip},
   }`
 
   const product = await sanity.fetch(q, { slug: params.slug })
