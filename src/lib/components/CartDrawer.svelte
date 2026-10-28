@@ -14,7 +14,7 @@
 
 <SheetContent class="border-black/10 bg-white dark:border-white/10 dark:bg-black">
   <SheetHeader>
-    <SheetTitle class="heading">Cart</SheetTitle>
+    <SheetTitle class="heading flex items-center">Cart</SheetTitle>
   </SheetHeader>
   <div class="grid gap-4 overflow-y-auto px-5">
     {#if cart.length > 0}

@@ -8,7 +8,7 @@
 
 <form
   onsubmit={handleFormSubmit}
-  class="grid gap-10 border border-black/5 p-5 md:p-10 dark:border-white/10"
+  class="grid gap-10 py-5 md:py-0 md:px-5"
 >
   <div class="grid gap-10 md:grid-cols-2">
     <div class="group">

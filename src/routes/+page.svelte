@@ -40,7 +40,7 @@
 </div>
 
 <header
-  class={`relative isolate flex min-h-[95vh] w-full items-center  bg-stone-950 before:absolute before:-z-1 before:h-full before:w-full before:bg-linear-to-l before:from-transparent before:to-stone-950/90`}
+  class={`relative isolate flex min-h-[95vh] w-full items-center  bg-stone-950 before:absolute before:-z-1 before:h-full before:w-full before:bg-linear-to-b before:from-transparent before:to-[#120005]`}
 >
   <img
     fetchPriority="low"

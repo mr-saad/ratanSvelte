@@ -4,10 +4,10 @@
 
   const pathname = $derived(page.url.pathname)
 </script>
-
+<!-- border-t border-white/10 -->
 <footer
   class={cn(
-    "border-t border-white/10 bg-[#120005] text-white/60",
+    " bg-[#120005] text-white/60",
     pathname === "/" || pathname === "/about" ? "" : "mt-20"
   )}
 >
