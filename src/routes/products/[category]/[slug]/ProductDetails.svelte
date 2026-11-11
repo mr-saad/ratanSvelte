@@ -6,7 +6,7 @@
   const separatedColours = colours ? colours.split(";") : []
 </script>
 
-<div class="">
+<div class="max-md:px-5">
   <h1 class="highlight mb-3 font-serif text-2xl leading-none tracking-tighter capitalize md:mt-0">
     {title}
   </h1>

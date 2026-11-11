@@ -13,11 +13,14 @@
   <meta name="keywords" content={data.product.title.split(" ").join(", ")} />
 </svelte:head>
 
-<div class="content_container pt-23!">
+<div class="content_container pt-15.5! md:pt-20! max-md:px-0!">
   <div class="grid gap-5 overflow-clip md:grid-cols-[auto_1fr]">
     <ImgSwiper images={data.product.images} title={data.product.title} />
     <ProductDetails {...data.product} />
   </div>
+</div>
+
+<div class="content_container">
   {#if data.similarProducts.length}
     <h2 class="heading mt-20 mb-2">You Might Also Like</h2>
     <ProductGrid>

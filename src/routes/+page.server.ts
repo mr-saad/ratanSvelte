@@ -6,7 +6,7 @@ export const load = async () => {
         "categories": *[_type == "product" && _id == *[_type == "product" && type == ^.type][0]._id]
           {type, "image": images[0].asset->{url, "lqip": metadata.lqip}},
         "headerImage":*[_type=="headerImage"][0]{"image":image.asset->{url, "lqip": metadata.lqip}},
-        "newArrivals": *[_type=="product"][0..$count]{
+        "newArrivals": *[_type=="product"]|order(_createdAt desc)[0..$count]{
               _id,
               title,
               description,

@@ -30,7 +30,7 @@
   }
 </script>
 
-<div class="max-w-md min-w-0">
+<div class="md:max-w-md min-w-0">
   <div
     class="embla__viewport overflow-clip [--slide-size:100%]"
     use:useEmblaCarousel
