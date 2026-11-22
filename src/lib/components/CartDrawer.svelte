@@ -8,6 +8,7 @@
   import Trash from "@lucide/svelte/icons/trash"
   import { removeFromCart } from "$lib/utils/cart/removeFromCart"
   import { auth } from "$lib/store/auth.svelte"
+  import { cn } from "$lib/utils"
 
   let cart = $derived(auth.value.cart)
 </script>
@@ -18,8 +19,13 @@
   </SheetHeader>
   <div class="grid gap-4 overflow-y-auto px-5">
     {#if cart.length > 0}
-      {#each cart as prod}
-        <div class="flex justify-between gap-2 border-b border-black/10 pb-4 dark:border-white/10">
+      {#each cart as prod, i}
+        <div
+          class={cn(
+            "flex justify-between gap-2 border-black/10 pb-4 dark:border-white/10",
+            i !== cart.length - 1 && "border-b"
+          )}
+        >
           <SheetClose class="text-start">
             <a href={`/products/${prod.type}/${prod.slug}`} class="flex items-start gap-2">
               <img

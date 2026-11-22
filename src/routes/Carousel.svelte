@@ -49,7 +49,9 @@
               >
                 {prod.title}
               </h2>
-              <p title={prod.description} class="mb-2 line-clamp-2">{prod.description}</p>
+              <p title={prod.description} class="my-2 line-clamp-2 leading-tight">
+                {prod.description}
+              </p>
               <a
                 href={`/products/${prod.type}/${prod.slug}`}
                 class={buttonVariants({ variant: "default" })}>View More</a

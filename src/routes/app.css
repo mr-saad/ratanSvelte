@@ -19,7 +19,8 @@
   --card-foreground: oklch(0.145 0 0);
   --popover: oklch(1 0 0);
   --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(51.4% 0.222 16.935); /*0.225 0 0*/
+  --primary: oklch(51.4% 0.222 16.935);
+  /*0.225 0 0*/
   --primary-foreground: oklch(0.985 0 0);
   --secondary: oklch(0.97 0 0);
   --secondary-foreground: oklch(0.205 0 0);
@@ -120,15 +121,23 @@ body {
 .card {
   @apply bg-white dark:bg-white/10;
 }
+
 .heading {
   @apply font-serif text-3xl text-black dark:text-white;
 }
+
 .highlight {
   @apply text-black dark:text-white;
 }
-.input {
-  @apply border-primary/50 focus-visible:border-primary w-full border-b text-black transition outline-none dark:text-white;
+
+.input_label {
+  @apply mb-2 block font-bold tracking-wider uppercase;
 }
+
+.input {
+  @apply border-primary/20 focus-visible:border-primary w-full border-b text-black transition outline-none dark:text-white;
+}
+
 .select {
   @apply text-[#897f82] focus-visible:border-rose-700 focus-visible:outline-rose-700;
 }

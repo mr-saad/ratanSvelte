@@ -4,6 +4,7 @@
   import { cn } from "tailwind-variants"
   import ThemeToggle from "./ThemeToggle.svelte"
   import { onMount } from "svelte"
+  import { auth } from "$lib/store/auth.svelte"
 
   let navOpen = $state(false)
   let navRef = $state<HTMLElement | null>()
@@ -84,7 +85,7 @@
       <div class="hidden md:block"><ThemeToggle /></div>
       <CartLink />
       <div class="hidden md:block">
-        <!-- <AccountLink /> -->
+        {#if auth.value.userId !== ""}<a href="/account">{auth.value.username}</a>{/if}
       </div>
     </div>
   </div>

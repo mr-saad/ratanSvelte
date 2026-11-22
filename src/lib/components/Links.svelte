@@ -1,5 +1,6 @@
 <script lang="ts">
   import { page } from "$app/state"
+  import { auth } from "$lib/store/auth.svelte"
   import { cn } from "$lib/utils"
   import ThemeToggle from "./ThemeToggle.svelte"
 
@@ -28,7 +29,7 @@
     navOpen ? "flex" : "hidden md:flex"
   )}
 >
-  <li class="">
+  <li>
     <a
       onclick={onClose}
       class={`block pb-2 transition hover:opacity-100 focus-visible:opacity-100  md:px-2 md:py-0 ${
@@ -40,7 +41,7 @@
     </a>
   </li>
   {#each links as link}
-    <li class="">
+    <li>
       <a
         onclick={onClose}
         class={`block py-2 transition hover:opacity-100 focus-visible:opacity-100  md:px-2 md:py-0 ${
@@ -52,5 +53,13 @@
       </a>
     </li>
   {/each}
+  <li class="md:hidden">
+    {#if auth.value.userId !== ""}<a
+        class={`block py-2 transition hover:opacity-100 focus-visible:opacity-100  md:px-2 md:py-0 ${
+          pathname === "/account" ? "opacity-100" : "opacity-60"
+        }`}
+        href="/account">{auth.value.username}</a
+      >{/if}
+  </li>
   <li class="pt-2 md:hidden"><ThemeToggle /></li>
 </ul>
